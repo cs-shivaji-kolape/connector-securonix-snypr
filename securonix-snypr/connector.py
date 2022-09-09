@@ -1,3 +1,10 @@
+""" Copyright start
+  Copyright (C) 2008 - 2022 Fortinet Inc.
+  All rights reserved.
+  FORTINET CONFIDENTIAL & FORTINET PROPRIETARY SOURCE CODE
+  Copyright end """
+
+
 from connectors.core.connector import Connector, get_logger, ConnectorError
 from .operations import operations, _check_health
 
@@ -16,4 +23,5 @@ class SecuronixConnector(Connector):
 
     def check_health(self, config):
         return _check_health(config)
+
 

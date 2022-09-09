@@ -1,15 +1,15 @@
 {
   "description": "Connector facilitates automated operations to Analyze and detect the Threats, Violations and Risk associated with users in organisation.",
-  "category": "UEBA",
+  "category": "Analytics and SIEM",
   "name": "securonix-snypr",
   "label": "Securonix SNYPR",
-  "version": "2.0.1",
-  "publisher": "Fortinet",
-  "cs_approved": true,
+  "version": "2.0.2",
+  "publisher": "Community",
+  "cs_approved": false,
   "cs_compatible": true,
   "icon_small_name": "small.png",
   "icon_large_name": "large.png",
-  "help_online": "https://docs.fortinet.com/document/fortisoar/2.0.1/securonix-snypr/24/securonix-snypr-v2-0-1",
+  "help_online": "https://docs.fortinet.com/document/fortisoar/2.0.2/securonix-snypr/402/securonix-snypr-v2-0-2",
   "configuration": {
     "fields": [
       {
@@ -1457,5 +1457,6 @@
     }
   ]
 }
+
 
 

@@ -1,3 +1,10 @@
+""" Copyright start
+  Copyright (C) 2008 - 2022 Fortinet Inc.
+  All rights reserved.
+  FORTINET CONFIDENTIAL & FORTINET PROPRIETARY SOURCE CODE
+  Copyright end """
+
+
 LAST_SEEN = {
     "Last 1 Hour": 1,
     "Last 2 Hours": 2,
@@ -14,4 +21,5 @@ LAST_SEEN = {
     "Last 90 Days": 90,
     "Last Year": 365
 }
+
 
