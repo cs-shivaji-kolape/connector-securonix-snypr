@@ -1,3 +1,10 @@
+""" Copyright start
+  Copyright (C) 2008 - 2022 Fortinet Inc.
+  All rights reserved.
+  FORTINET CONFIDENTIAL & FORTINET PROPRIETARY SOURCE CODE
+  Copyright end """
+
+
 import datetime, json, requests, time, xmltodict
 from urllib.parse import parse_qs
 
@@ -32,10 +39,13 @@ class Securonix(object):
     def make_rest_call(self, endpoint, params=None, updated_headers=None, payload=None, method='GET'):
         headers = updated_headers if updated_headers else self.generate_headers()
         service_endpoint = '{0}{1}'.format(self.server_url, endpoint)
-        logger.info('Request URL {}'.format(service_endpoint))
+        logger.debug('Request URL {}'.format(service_endpoint))
         try:
-            response = requests.request(method, service_endpoint, data=str(payload), headers=headers, params=params,
+            data = str(payload) if payload else None
+            response = requests.request(method, service_endpoint, data=data, headers=headers, params=params,
                                             verify=self.verify_ssl)
+            logger.debug('API Response {}'.format(response.text))
+            logger.debug('API Status code  {}'.format(response.status_code))
             if response.ok:
                 content_type = response.headers.get('Content-Type')
                 if 'application/json' in content_type:
@@ -423,4 +433,5 @@ operations = {
     'get_available_threat_action': get_available_threat_action,
     'add_comment': add_comment
 }
+
 
