@@ -3,13 +3,13 @@
   "category": "Analytics and SIEM",
   "name": "securonix-snypr",
   "label": "Securonix SNYPR",
-  "version": "2.0.2",
-  "publisher": "Community",
+  "version": "2.1.0",
+  "publisher": "Fortinet",
   "cs_approved": false,
   "cs_compatible": true,
   "icon_small_name": "small.png",
   "icon_large_name": "large.png",
-  "help_online": "https://docs.fortinet.com/document/fortisoar/2.0.2/securonix-snypr/402/securonix-snypr-v2-0-2",
+  "help_online": "",
   "configuration": {
     "fields": [
       {

@@ -3,12 +3,12 @@
   "data": [
     {
       "@type": "WorkflowCollection",
-      "name": "Sample - Securonix SNYPR - 2.0.2",
+      "name": "Sample - Securonix SNYPR - 2.1.0",
       "description": "Sample playbooks for \"Securonix SNYPR\" connector. If you are planning to use any of the sample playbooks in your environment, ensure that you clone those playbooks and move them to a different collection, since the sample playbook collection gets deleted during connector upgrade and delete.",
       "visible": true,
       "image": "",
-      "uuid": "13c39e12-aac8-4fe2-b711-736c12313e07",
-      "id": 232,
+      "uuid": "e201c879-bd9b-4a41-87bf-93fcf1a490c4",
+      "id": 383,
       "deletedAt": null,
       "importedBy": [],
       "recordTags": [],
@@ -16,28 +16,28 @@
         {
           "@type": "Workflow",
           "triggerLimit": null,
-          "name": "Check Task on Incident",
+          "name": "Query Users",
           "aliasName": null,
           "tag": "#Securonix-SNYPR",
-          "description": "Checks if the action that you have specified is allowed on the specified Securonix SNYPR incident based on the incident ID and action name you have specified.",
+          "description": "Retrieves details of all users or specific users from Securonix SNYPR based on the query attributes that you have specified.",
           "isActive": false,
           "debug": false,
           "singleRecordExecution": false,
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1661752700,
-          "collection": "/api/3/workflow_collections/13c39e12-aac8-4fe2-b711-736c12313e07",
+          "lastModifyDate": 1664877035,
+          "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
           "versions": [],
-          "triggerStep": "/api/3/workflow_steps/f85888f3-3b46-4cdf-b895-03d0788528b3",
+          "triggerStep": "/api/3/workflow_steps/615e1991-1c64-4b10-87e4-17e57c8b924b",
           "steps": [
             {
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "arguments": {
-                "route": "d5332a88-d22d-41d2-a3df-68abe400bb0b",
-                "title": "Securonix-snypr: Check Task on Incident",
+                "route": "f4ffc754-41ff-4cbe-b2d4-39d32ea7f8fa",
+                "title": "Securonix: Query Users",
                 "resources": [
                   "alerts"
                 ],
@@ -61,51 +61,150 @@
               },
               "status": null,
               "top": "20",
-              "left": "180",
+              "left": "280",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
               "group": null,
-              "uuid": "f85888f3-3b46-4cdf-b895-03d0788528b3"
+              "uuid": "615e1991-1c64-4b10-87e4-17e57c8b924b"
             },
             {
               "@type": "WorkflowStep",
-              "name": "Check Task on Incident",
+              "name": "Query for Users",
+              "description": null,
+              "arguments": {
+                "name": "Securonix SNYPR",
+                "config": "da061c02e08e46c08fe0b911a0a16ee4",
+                "params": {
+                  "query": "employeeid = \"1001\""
+                },
+                "version": "2.1.0",
+                "connector": "securonix-snypr",
+                "operation": "query_users",
+                "operationTitle": "Query Users",
+                "step_variables": []
+              },
+              "status": null,
+              "top": "152",
+              "left": "280",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "c308d94b-ee19-4d46-9403-aaa71582beea"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Query for Users",
+              "targetStep": "/api/3/workflow_steps/c308d94b-ee19-4d46-9403-aaa71582beea",
+              "sourceStep": "/api/3/workflow_steps/615e1991-1c64-4b10-87e4-17e57c8b924b",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "ef77e0ba-4cd5-4df6-a04a-6b3c01a7d34b"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "08fe322a-9eb0-40b7-a535-0b2f2ebe5a8f",
+          "id": 5682,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "securonix-snypr"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Possible Actions for Incident",
+          "aliasName": null,
+          "tag": "#Securonix-SNYPR",
+          "description": "Retrieves a list of all possible actions associated with a specific incident from Securonix SNYPR based on the incident ID you have specified.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1664877035,
+          "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/561a276f-1324-42b2-8387-ea7cfebee4b1",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "ff1f23cd-cc2a-431a-a371-9105215eed0f",
+                "title": "Securonix-snypr: Get Possible Actions for Incident",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "displayConditions": {
+                  "alerts": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "200",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "561a276f-1324-42b2-8387-ea7cfebee4b1"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Possible Actions for Incident",
               "description": null,
               "arguments": {
                 "name": "Securonix SNYPR",
                 "config": "2379436e-599a-4c02-a73d-76f89cc3c834",
                 "params": {
-                  "actionName": "CLAIM",
-                  "incidentId": "10029"
+                  "incidentId": "50107"
                 },
-                "version": "2.0.2",
+                "version": "2.1.0",
                 "connector": "securonix-snypr",
-                "operation": "check_task_on_incident",
-                "operationTitle": "Check Task on Incident",
+                "operation": "get_possible_action_for_incident",
+                "operationTitle": "Get Possible Actions for Incident",
                 "step_variables": []
               },
               "status": null,
-              "top": "153",
-              "left": "180",
+              "top": "148",
+              "left": "200",
               "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
               "group": null,
-              "uuid": "fe960bdf-17c4-40d8-b721-c4bbd9af668e"
+              "uuid": "ea1b42a5-8993-4d3a-9878-3993fbde41d7"
             }
           ],
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "name": "Start -> Check Task on Incident",
-              "targetStep": "/api/3/workflow_steps/fe960bdf-17c4-40d8-b721-c4bbd9af668e",
-              "sourceStep": "/api/3/workflow_steps/f85888f3-3b46-4cdf-b895-03d0788528b3",
+              "name": "Start -> Get Possible Actions for Incident",
+              "targetStep": "/api/3/workflow_steps/ea1b42a5-8993-4d3a-9878-3993fbde41d7",
+              "sourceStep": "/api/3/workflow_steps/561a276f-1324-42b2-8387-ea7cfebee4b1",
               "label": null,
               "isExecuted": false,
-              "uuid": "f21e234c-7984-46ff-858e-499083f0d62e"
+              "uuid": "1f759085-993d-4646-95a3-f209efdf46b7"
             }
           ],
           "groups": [],
           "priority": null,
-          "uuid": "027bcff7-ee38-4810-b3d2-e3bd3e97e632",
-          "id": 3255,
+          "uuid": "0a588246-390c-4cb8-ab79-ba0bd0cf895b",
+          "id": 5676,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -117,146 +216,49 @@
         {
           "@type": "Workflow",
           "triggerLimit": null,
-          "name": "List All Peer Groups",
+          "name": "Get Workflows",
           "aliasName": null,
           "tag": "#Securonix-SNYPR",
-          "description": "Retrieves a list of all peer groups from Securonix SNYPR.",
+          "description": "Retrieves a list of all existing workflows from Securonix SNYPR.",
           "isActive": false,
           "debug": false,
           "singleRecordExecution": false,
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1661752700,
-          "collection": "/api/3/workflow_collections/13c39e12-aac8-4fe2-b711-736c12313e07",
+          "lastModifyDate": 1664877035,
+          "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
           "versions": [],
-          "triggerStep": "/api/3/workflow_steps/60b1c2a4-8193-4868-8b82-23ea87d616c1",
+          "triggerStep": "/api/3/workflow_steps/cd3c984a-a8c4-4ae6-b22d-2b35f16080aa",
           "steps": [
             {
               "@type": "WorkflowStep",
-              "name": "List All Peer Groups",
-              "description": null,
-              "arguments": {
-                "name": "Securonix SNYPR",
-                "params": [],
-                "version": "2.0.2",
-                "connector": "securonix-snypr",
-                "operation": "list_peer_groups",
-                "operationTitle": "List All Peer Groups",
-                "step_variables": []
-              },
-              "status": null,
-              "top": "140",
-              "left": "280",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "3f1bc20d-aed3-4ef0-9f6c-54cd06e310be"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "route": "53c32781-7173-4ef9-bd0b-4d87a94a8d2a",
-                "title": "Securonix: List All Peer Groups",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
-                "step_variables": {
-                  "input": {
-                    "records": "{{vars.input.records}}"
-                  }
-                },
-                "displayConditions": {
-                  "alerts": {
-                    "sort": [],
-                    "limit": 30,
-                    "logic": "AND",
-                    "filters": []
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
-              },
-              "status": null,
-              "top": "20",
-              "left": "280",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "60b1c2a4-8193-4868-8b82-23ea87d616c1"
-            }
-          ],
-          "routes": [
-            {
-              "@type": "WorkflowRoute",
-              "name": "Start -> List All Peer Groups",
-              "targetStep": "/api/3/workflow_steps/3f1bc20d-aed3-4ef0-9f6c-54cd06e310be",
-              "sourceStep": "/api/3/workflow_steps/60b1c2a4-8193-4868-8b82-23ea87d616c1",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "1788b978-02d3-4347-bff2-7cbf58f421d4"
-            }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "0418d61f-1b29-4f53-a824-9c188e24d00c",
-          "id": 3274,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "securonix-snypr"
-          ]
-        },
-        {
-          "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Get Available Threat Action",
-          "aliasName": null,
-          "tag": "#Securonix-SNYPR",
-          "description": "Retrieves a list of all available threat actions from Securonix SNYPR.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1661752700,
-          "collection": "/api/3/workflow_collections/13c39e12-aac8-4fe2-b711-736c12313e07",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/1252a829-96a8-4f89-af9b-9b37432a9b9f",
-          "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Get Available Threat Action",
+              "name": "Get Workflows",
               "description": null,
               "arguments": {
                 "name": "Securonix SNYPR",
                 "config": "2379436e-599a-4c02-a73d-76f89cc3c834",
                 "params": [],
-                "version": "2.0.2",
+                "version": "2.1.0",
                 "connector": "securonix-snypr",
-                "operation": "get_available_threat_action",
-                "operationTitle": "Get Available Threat Action",
+                "operation": "get_workflows",
+                "operationTitle": "Get Workflows",
                 "step_variables": []
               },
               "status": null,
-              "top": "166",
-              "left": "249",
+              "top": "154",
+              "left": "209",
               "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
               "group": null,
-              "uuid": "07bf508d-81ca-42e1-b280-7555cdfb1353"
+              "uuid": "8ac761a2-992a-40e5-86ed-dce432f2fe18"
             },
             {
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "arguments": {
-                "route": "97650364-139b-4672-aa2e-a423f806132d",
-                "title": "Securonix-snypr: Get Available Threat Action",
+                "route": "3422d185-6be2-4819-a103-8f6dfdfe460a",
+                "title": "Securonix-snypr: Get Workflows",
                 "resources": [
                   "alerts"
                 ],
@@ -279,28 +281,28 @@
                 "singleRecordExecution": false
               },
               "status": null,
-              "top": "20",
-              "left": "249",
+              "top": "14",
+              "left": "209",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
               "group": null,
-              "uuid": "1252a829-96a8-4f89-af9b-9b37432a9b9f"
+              "uuid": "cd3c984a-a8c4-4ae6-b22d-2b35f16080aa"
             }
           ],
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "name": "Start -> Get Available Threat Action",
-              "targetStep": "/api/3/workflow_steps/07bf508d-81ca-42e1-b280-7555cdfb1353",
-              "sourceStep": "/api/3/workflow_steps/1252a829-96a8-4f89-af9b-9b37432a9b9f",
+              "name": "Start -> Get Workflows",
+              "targetStep": "/api/3/workflow_steps/8ac761a2-992a-40e5-86ed-dce432f2fe18",
+              "sourceStep": "/api/3/workflow_steps/cd3c984a-a8c4-4ae6-b22d-2b35f16080aa",
               "label": null,
               "isExecuted": false,
-              "uuid": "ca89d0e3-1376-41ba-ae4c-472e6fb4a3ac"
+              "uuid": "4e71b95b-e79b-4db0-91c6-c38390aff655"
             }
           ],
           "groups": [],
           "priority": null,
-          "uuid": "0a75d7e9-13f4-4c64-9f66-a89d60fa32eb",
-          "id": 3264,
+          "uuid": "12941b07-69b0-4d71-864b-7ad5b8f8e2f8",
+          "id": 5680,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -322,17 +324,44 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1661752700,
-          "collection": "/api/3/workflow_collections/13c39e12-aac8-4fe2-b711-736c12313e07",
+          "lastModifyDate": 1664877035,
+          "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
           "versions": [],
-          "triggerStep": "/api/3/workflow_steps/9c00b3fd-9cea-4680-8955-20d8707cd4a4",
+          "triggerStep": "/api/3/workflow_steps/683fc897-f2d7-427b-98a9-2a60663a4628",
           "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Custom Query",
+              "description": null,
+              "arguments": {
+                "name": "Securonix SNYPR",
+                "config": "824b2ab72ed948038512a9c2d02622ac",
+                "params": {
+                  "query": "\"index=tpi&tpi_type=Malicious Domain\"",
+                  "eventtime_to": "",
+                  "eventtime_from": "",
+                  "generationtime_to": "",
+                  "generationtime_from": ""
+                },
+                "version": "2.1.0",
+                "connector": "securonix-snypr",
+                "operation": "custom_query",
+                "operationTitle": "Custom Query",
+                "step_variables": []
+              },
+              "status": null,
+              "top": "140",
+              "left": "320",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "0d614aa7-dde3-4c84-8abc-b366a0413732"
+            },
             {
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "arguments": {
-                "route": "f152da12-2227-4027-acf6-d003b6913eff",
+                "route": "22dece59-d3c2-4318-99f9-dbec6f1c92cc",
                 "title": "Securonix: Custom Query",
                 "resources": [
                   "alerts"
@@ -360,51 +389,24 @@
               "left": "320",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
               "group": null,
-              "uuid": "9c00b3fd-9cea-4680-8955-20d8707cd4a4"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Custom Query",
-              "description": null,
-              "arguments": {
-                "name": "Securonix SNYPR",
-                "config": "824b2ab72ed948038512a9c2d02622ac",
-                "params": {
-                  "query": "\"index=tpi&tpi_type=Malicious Domain\"",
-                  "eventtime_to": "",
-                  "eventtime_from": "",
-                  "generationtime_to": "",
-                  "generationtime_from": ""
-                },
-                "version": "2.0.2",
-                "connector": "securonix-snypr",
-                "operation": "custom_query",
-                "operationTitle": "Custom Query",
-                "step_variables": []
-              },
-              "status": null,
-              "top": "140",
-              "left": "320",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "ac2452aa-2255-4fc4-a7a3-62bdbbaa2c24"
+              "uuid": "683fc897-f2d7-427b-98a9-2a60663a4628"
             }
           ],
           "routes": [
             {
               "@type": "WorkflowRoute",
               "name": "Start -> Custom Query",
-              "targetStep": "/api/3/workflow_steps/ac2452aa-2255-4fc4-a7a3-62bdbbaa2c24",
-              "sourceStep": "/api/3/workflow_steps/9c00b3fd-9cea-4680-8955-20d8707cd4a4",
+              "targetStep": "/api/3/workflow_steps/0d614aa7-dde3-4c84-8abc-b366a0413732",
+              "sourceStep": "/api/3/workflow_steps/683fc897-f2d7-427b-98a9-2a60663a4628",
               "label": null,
               "isExecuted": false,
-              "uuid": "c0f90079-8782-4d1e-a310-26562770fa5c"
+              "uuid": "3da6744a-62fa-4f49-8c8e-1e0579a8ce70"
             }
           ],
           "groups": [],
           "priority": null,
-          "uuid": "481a1003-7bc2-4e92-a1e8-208041963833",
-          "id": 3267,
+          "uuid": "2f5e4ff3-1288-4fef-94dc-58369855ee15",
+          "id": 5667,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -426,10 +428,10 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1661752700,
-          "collection": "/api/3/workflow_collections/13c39e12-aac8-4fe2-b711-736c12313e07",
+          "lastModifyDate": 1664877035,
+          "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
           "versions": [],
-          "triggerStep": "/api/3/workflow_steps/aeb321e4-6e50-4752-b875-cf6a7a63b385",
+          "triggerStep": "/api/3/workflow_steps/c5561ff5-3fe8-4a3d-b36f-0f72be3b7a90",
           "steps": [
             {
               "@type": "WorkflowStep",
@@ -443,7 +445,7 @@
                   "incidentId": "100",
                   "other_fields": "{\n  \"12_Remediation-Performed\":\"Remediation Performed\"\n}"
                 },
-                "version": "2.0.2",
+                "version": "2.1.0",
                 "connector": "securonix-snypr",
                 "operation": "take_action_on_incident",
                 "operationTitle": "Take Action on Incident",
@@ -454,14 +456,14 @@
               "left": "360",
               "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
               "group": null,
-              "uuid": "4e164b68-81c3-4a2c-adb7-77b23d18bf81"
+              "uuid": "37d5acd1-b374-4643-9865-447ea91919e8"
             },
             {
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "arguments": {
-                "route": "808d3f2f-f151-4c52-a697-bacefc02452f",
+                "route": "5139bd4a-b828-4f86-80bb-4c4cfb9ee5b4",
                 "title": "Securonix-snypr: Take Action on Incident",
                 "resources": [
                   "alerts"
@@ -489,24 +491,721 @@
               "left": "360",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
               "group": null,
-              "uuid": "aeb321e4-6e50-4752-b875-cf6a7a63b385"
+              "uuid": "c5561ff5-3fe8-4a3d-b36f-0f72be3b7a90"
             }
           ],
           "routes": [
             {
               "@type": "WorkflowRoute",
               "name": "Start -> Take Action on Incident",
-              "targetStep": "/api/3/workflow_steps/4e164b68-81c3-4a2c-adb7-77b23d18bf81",
-              "sourceStep": "/api/3/workflow_steps/aeb321e4-6e50-4752-b875-cf6a7a63b385",
+              "targetStep": "/api/3/workflow_steps/37d5acd1-b374-4643-9865-447ea91919e8",
+              "sourceStep": "/api/3/workflow_steps/c5561ff5-3fe8-4a3d-b36f-0f72be3b7a90",
               "label": null,
               "isExecuted": false,
-              "uuid": "ae3a5e61-5fce-4461-b84b-12dcf8764cc1"
+              "uuid": "f42f8402-91ff-4b7e-9f6f-4bec7198ebab"
             }
           ],
           "groups": [],
           "priority": null,
-          "uuid": "6c2accf3-ef94-4ab0-8fab-96cbfe315d84",
-          "id": 3273,
+          "uuid": "3d40f66a-a85b-4ece-9e1e-02eb3b0419cb",
+          "id": 5668,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "securonix-snypr"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Incident Status",
+          "aliasName": null,
+          "tag": "#Securonix-SNYPR",
+          "description": "Retrieves the status of a specific incident from Securonix SNYPR based on the incident ID you have specified.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1664877035,
+          "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/7a1610ad-150c-4d50-bfdd-07420a3d3097",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "06235456-b69c-499a-ac13-fd3ac7825ac4",
+                "title": "Securonix-snypr: Get Incident Status",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "displayConditions": {
+                  "alerts": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "26",
+              "left": "272",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "7a1610ad-150c-4d50-bfdd-07420a3d3097"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Incident Status",
+              "description": null,
+              "arguments": {
+                "name": "Securonix SNYPR",
+                "config": "2379436e-599a-4c02-a73d-76f89cc3c834",
+                "params": {
+                  "incidentId": "50107"
+                },
+                "version": "2.1.0",
+                "connector": "securonix-snypr",
+                "operation": "get_incident_status",
+                "operationTitle": "Get Incident Status",
+                "step_variables": []
+              },
+              "status": null,
+              "top": "152",
+              "left": "272",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "ce383b4f-db0e-431e-a44b-b483e591f9f6"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Get Incident Status",
+              "targetStep": "/api/3/workflow_steps/ce383b4f-db0e-431e-a44b-b483e591f9f6",
+              "sourceStep": "/api/3/workflow_steps/7a1610ad-150c-4d50-bfdd-07420a3d3097",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "1138abf7-3148-4c2b-a8fe-a788ce8247c4"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "3f6f3276-a880-4840-842e-6e14d08c313c",
+          "id": 5687,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "securonix-snypr"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Top Threats",
+          "aliasName": null,
+          "tag": "#Securonix-SNYPR",
+          "description": "Retrieves the top threats from Securonix SNYPR based on when the threat was last seen and other input parameters that you have specified.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1664877035,
+          "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/0b24612e-8253-41e8-912b-b80ef7106b9d",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "211ec982-d71c-4873-a69d-58629aa77fdc",
+                "title": "Securonix: Get Top Threats",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "displayConditions": {
+                  "alerts": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "280",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "0b24612e-8253-41e8-912b-b80ef7106b9d"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Top Threats",
+              "description": null,
+              "arguments": {
+                "name": "Securonix SNYPR",
+                "config": "620b9113-4db1-4635-a8a4-631265327915",
+                "params": {
+                  "dateunit": "Hours",
+                  "dateunitvalue": "Last 24 Hours"
+                },
+                "version": "2.1.0",
+                "connector": "securonix-snypr",
+                "operation": "get_top_threats",
+                "operationTitle": "Get Top Threats",
+                "step_variables": []
+              },
+              "status": null,
+              "top": "160",
+              "left": "280",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "eebeb7c9-1979-4898-b8ca-690d2853e501"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Get Top Threats",
+              "targetStep": "/api/3/workflow_steps/eebeb7c9-1979-4898-b8ca-690d2853e501",
+              "sourceStep": "/api/3/workflow_steps/0b24612e-8253-41e8-912b-b80ef7106b9d",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "990fdcc1-c860-4ca4-ad71-62d312d5a2fe"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "4959fb54-1e54-49d4-9827-222cfe11e107",
+          "id": 5685,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "securonix-snypr"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Risk History",
+          "aliasName": null,
+          "tag": "#Securonix-SNYPR",
+          "description": "Retrieves risk history for all users or risk history from Securonix SNYPR based on the query attributes and other input parameters that you have specified.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1664877035,
+          "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/c9a16ffa-6ea4-443e-ba39-a919dd48ab49",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Risk History",
+              "description": null,
+              "arguments": {
+                "name": "Securonix SNYPR",
+                "config": "da061c02e08e46c08fe0b911a0a16ee4",
+                "params": {
+                  "to": "2019-08-06T18:30:00.000Z",
+                  "from": "2019-07-31T18:30:00.000Z",
+                  "query": "employeeid = \"1001\""
+                },
+                "version": "2.1.0",
+                "connector": "securonix-snypr",
+                "operation": "get_risk_history",
+                "operationTitle": "Get Risk History",
+                "step_variables": []
+              },
+              "status": null,
+              "top": "150",
+              "left": "280",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "0dce7b04-7e32-461a-8aa8-f43bc6ede9c2"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "a0f58c80-bf1e-46a9-95b6-7b2357afa821",
+                "title": "Securonix: Get Risk History",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "displayConditions": {
+                  "alerts": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "280",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "c9a16ffa-6ea4-443e-ba39-a919dd48ab49"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Get Risk History",
+              "targetStep": "/api/3/workflow_steps/0dce7b04-7e32-461a-8aa8-f43bc6ede9c2",
+              "sourceStep": "/api/3/workflow_steps/c9a16ffa-6ea4-443e-ba39-a919dd48ab49",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "4df43fde-1876-4910-9127-4f46b3a1968c"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "4d1ccd06-6786-4dd3-b11e-baec9863bef3",
+          "id": 5678,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "securonix-snypr"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "List All Policies",
+          "aliasName": null,
+          "tag": "#Securonix-SNYPR",
+          "description": "Retrieves a list of all policies from Securonix SNYPR.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1664877035,
+          "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/5a157b88-eb85-4b91-82de-8e5860b260f9",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "List All Policies",
+              "description": null,
+              "arguments": {
+                "name": "Securonix SNYPR",
+                "params": [],
+                "version": "2.1.0",
+                "connector": "securonix-snypr",
+                "operation": "list_policies",
+                "operationTitle": "List All Policies",
+                "step_variables": []
+              },
+              "status": null,
+              "top": "152",
+              "left": "280",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "2fd0d0d6-c734-42ad-bf30-d2fbe3247a27"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "c82fdb45-6801-4c08-a6d1-d7de9345ea1f",
+                "title": "Securonix: List All Policies",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "displayConditions": {
+                  "alerts": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "280",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "5a157b88-eb85-4b91-82de-8e5860b260f9"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> List All Policies",
+              "targetStep": "/api/3/workflow_steps/2fd0d0d6-c734-42ad-bf30-d2fbe3247a27",
+              "sourceStep": "/api/3/workflow_steps/5a157b88-eb85-4b91-82de-8e5860b260f9",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "d6f204b7-c78a-4bf4-bfda-ec5c456a338a"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "5da1fa70-a7d7-4394-9d12-11ca615702ef",
+          "id": 5689,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "securonix-snypr"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Query Watchlist",
+          "aliasName": null,
+          "tag": "#Securonix-SNYPR",
+          "description": "Retrieves details of all watchlists or specific watchlists from Securonix SNYPR based on the query attributes that you have specified.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1664877035,
+          "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/8575cc2f-4609-4fcf-92b9-b109a200b597",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "b1252447-3d1b-444f-9e4f-1fe74daf030e",
+                "title": "Securonix: Query Watchlist",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "displayConditions": {
+                  "alerts": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "280",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "8575cc2f-4609-4fcf-92b9-b109a200b597"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Query Watchlist",
+              "description": null,
+              "arguments": {
+                "name": "Securonix SNYPR",
+                "config": "da061c02e08e46c08fe0b911a0a16ee4",
+                "params": {
+                  "query": "watchlistname=Recent_Hires"
+                },
+                "version": "2.1.0",
+                "connector": "securonix-snypr",
+                "operation": "query_watchlist",
+                "operationTitle": "Query Watchlist",
+                "step_variables": []
+              },
+              "status": null,
+              "top": "152",
+              "left": "280",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "dfbcc286-b573-4552-9686-779f9dcdb103"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Query for Watchlist",
+              "targetStep": "/api/3/workflow_steps/dfbcc286-b573-4552-9686-779f9dcdb103",
+              "sourceStep": "/api/3/workflow_steps/8575cc2f-4609-4fcf-92b9-b109a200b597",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "335b5305-6e09-42b1-9619-e67f82d8a68f"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "6747b942-6a96-416e-86fd-81efa4653243",
+          "id": 5684,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "securonix-snypr"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "List Users",
+          "aliasName": null,
+          "tag": "#Securonix-SNYPR",
+          "description": "Retrieves a list of all users from Securonix SNYPR.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1664877035,
+          "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/8e763231-846f-49e2-a588-5ae03d82d01c",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "List Users",
+              "description": null,
+              "arguments": {
+                "name": "Securonix SNYPR",
+                "config": "da061c02e08e46c08fe0b911a0a16ee4",
+                "params": [],
+                "version": "2.1.0",
+                "connector": "securonix-snypr",
+                "operation": "list_users",
+                "operationTitle": "List All Users",
+                "step_variables": []
+              },
+              "status": null,
+              "top": "140",
+              "left": "280",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "8861fe8f-207e-4183-9141-45c402c98ac6"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "293e83e9-97ae-43b9-8e12-8057e331d31c",
+                "title": "Securonix: List Users",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "displayConditions": {
+                  "alerts": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "280",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "8e763231-846f-49e2-a588-5ae03d82d01c"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> List Users",
+              "targetStep": "/api/3/workflow_steps/8861fe8f-207e-4183-9141-45c402c98ac6",
+              "sourceStep": "/api/3/workflow_steps/8e763231-846f-49e2-a588-5ae03d82d01c",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "80ec4242-8a77-4241-9545-4de8603b0a19"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "68fa8b43-3c82-4516-a4fe-7767c13cd711",
+          "id": 5683,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "securonix-snypr"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Default",
+          "aliasName": null,
+          "tag": "#Securonix-SNYPR",
+          "description": "Get default assignee for specified workflow from Securonix SNYPR.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1664877035,
+          "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/57695a27-3684-473b-a782-76283fe144b3",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Workflow Default Assignee",
+              "description": null,
+              "arguments": {
+                "name": "Securonix SNYPR",
+                "config": "6b6b9b3f-67d5-4fed-95db-115804736e37",
+                "params": {
+                  "workflow": "SOCTeamReview"
+                },
+                "version": "2.1.0",
+                "connector": "securonix-snypr",
+                "operation": "get_workflow_default_assignee",
+                "operationTitle": "Get Workflow Default Assignee",
+                "step_variables": []
+              },
+              "status": null,
+              "top": "166",
+              "left": "272",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "1a22c217-5796-4744-b157-e68b905d5e07"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "4dda06bc-b05d-4bd7-a74f-c5df0e51d58f",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "displayConditions": {
+                  "alerts": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "106",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "57695a27-3684-473b-a782-76283fe144b3"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Get Workflow Default Assignee",
+              "targetStep": "/api/3/workflow_steps/1a22c217-5796-4744-b157-e68b905d5e07",
+              "sourceStep": "/api/3/workflow_steps/57695a27-3684-473b-a782-76283fe144b3",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "dc75a8be-73a6-4e08-ad2e-1fa195aedfe2"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "69d71974-e81e-41dc-9323-25628d6dc278",
+          "id": 5675,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -528,10 +1227,10 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1661752700,
-          "collection": "/api/3/workflow_collections/13c39e12-aac8-4fe2-b711-736c12313e07",
+          "lastModifyDate": 1664877035,
+          "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
           "versions": [],
-          "triggerStep": "/api/3/workflow_steps/99d9cdf0-171c-4ee5-90ba-947da7e2b1cc",
+          "triggerStep": "/api/3/workflow_steps/6f60dab5-fb64-4d3e-adc5-543d4edd0fa4",
           "steps": [
             {
               "@type": "WorkflowStep",
@@ -552,7 +1251,7 @@
                   "violationName": "AWS S3 Security Violation",
                   "datasourceName": "AWS CCM"
                 },
-                "version": "2.0.2",
+                "version": "2.1.0",
                 "connector": "securonix-snypr",
                 "operation": "create_incident",
                 "operationTitle": "Create Incident",
@@ -563,14 +1262,14 @@
               "left": "153",
               "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
               "group": null,
-              "uuid": "02c02b6c-3e5d-42a4-b208-07f1a8bbcc81"
+              "uuid": "485b7957-4317-4e67-96f6-db7bd3cf03f6"
             },
             {
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "arguments": {
-                "route": "61b7f901-69e1-4c79-85da-b43a293ece57",
+                "route": "b67fcd42-02ca-4fe7-b371-da7f0d00c39f",
                 "title": "Securonix-snypr: Create Incident",
                 "resources": [
                   "alerts"
@@ -604,24 +1303,24 @@
               "left": "153",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
               "group": null,
-              "uuid": "99d9cdf0-171c-4ee5-90ba-947da7e2b1cc"
+              "uuid": "6f60dab5-fb64-4d3e-adc5-543d4edd0fa4"
             }
           ],
           "routes": [
             {
               "@type": "WorkflowRoute",
               "name": "Start -> Create Incident",
-              "targetStep": "/api/3/workflow_steps/02c02b6c-3e5d-42a4-b208-07f1a8bbcc81",
-              "sourceStep": "/api/3/workflow_steps/99d9cdf0-171c-4ee5-90ba-947da7e2b1cc",
+              "targetStep": "/api/3/workflow_steps/485b7957-4317-4e67-96f6-db7bd3cf03f6",
+              "sourceStep": "/api/3/workflow_steps/6f60dab5-fb64-4d3e-adc5-543d4edd0fa4",
               "label": null,
               "isExecuted": false,
-              "uuid": "5b4ed65e-e889-4b2b-a288-686461cf21fe"
+              "uuid": "dea4aa8f-411b-49b1-8cad-48987b2b7e97"
             }
           ],
           "groups": [],
           "priority": null,
-          "uuid": "7263b8d2-0235-4b87-a214-1c2474bfde19",
-          "id": 3275,
+          "uuid": "6f8dc7ff-171c-4958-8ab9-a96257e57891",
+          "id": 5669,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -643,10 +1342,10 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1661752700,
-          "collection": "/api/3/workflow_collections/13c39e12-aac8-4fe2-b711-736c12313e07",
+          "lastModifyDate": 1664877035,
+          "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
           "versions": [],
-          "triggerStep": "/api/3/workflow_steps/d6fbbcd9-585e-43d1-8852-ae0c81e4df9c",
+          "triggerStep": "/api/3/workflow_steps/473946a9-2cc1-4ae0-8c68-440f0f911767",
           "steps": [
             {
               "@type": "WorkflowStep",
@@ -658,7 +1357,7 @@
                 "params": {
                   "query": "tenantname=\"partnerdemo\""
                 },
-                "version": "2.0.2",
+                "version": "2.1.0",
                 "connector": "securonix-snypr",
                 "operation": "query_tpi",
                 "operationTitle": "Query Third Party Intelligence",
@@ -669,14 +1368,14 @@
               "left": "280",
               "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
               "group": null,
-              "uuid": "373af4a4-bdb9-45cc-bc56-6a16fd8b4a24"
+              "uuid": "2e0ba1fa-9c76-4b04-98e0-03d212ba47df"
             },
             {
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "arguments": {
-                "route": "ad5288c6-00f6-4a5a-9a0f-d051ff28c38b",
+                "route": "cb6f428e-a9bf-4c3d-8aee-6df638a428d7",
                 "title": "Securonix: Query Third Party Intelligence",
                 "resources": [
                   "alerts"
@@ -704,24 +1403,24 @@
               "left": "280",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
               "group": null,
-              "uuid": "d6fbbcd9-585e-43d1-8852-ae0c81e4df9c"
+              "uuid": "473946a9-2cc1-4ae0-8c68-440f0f911767"
             }
           ],
           "routes": [
             {
               "@type": "WorkflowRoute",
               "name": "Start -> Query for TPI",
-              "targetStep": "/api/3/workflow_steps/373af4a4-bdb9-45cc-bc56-6a16fd8b4a24",
-              "sourceStep": "/api/3/workflow_steps/d6fbbcd9-585e-43d1-8852-ae0c81e4df9c",
+              "targetStep": "/api/3/workflow_steps/2e0ba1fa-9c76-4b04-98e0-03d212ba47df",
+              "sourceStep": "/api/3/workflow_steps/473946a9-2cc1-4ae0-8c68-440f0f911767",
               "label": null,
               "isExecuted": false,
-              "uuid": "e13221ab-b2af-40f9-9e61-b9ddd97c413e"
+              "uuid": "1ef0342e-f524-4e82-a613-301fb2e2c7c4"
             }
           ],
           "groups": [],
           "priority": null,
-          "uuid": "7c396924-deea-4ab5-b3d5-470815e847b7",
-          "id": 3276,
+          "uuid": "7463a6b5-2fac-4435-ba48-1dddaf6426b0",
+          "id": 5670,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -743,17 +1442,17 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1661752700,
-          "collection": "/api/3/workflow_collections/13c39e12-aac8-4fe2-b711-736c12313e07",
+          "lastModifyDate": 1664877035,
+          "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
           "versions": [],
-          "triggerStep": "/api/3/workflow_steps/9cd8a234-8d44-49c2-be11-2e4922f9ca1a",
+          "triggerStep": "/api/3/workflow_steps/1b74ebad-b882-460b-b985-2f5b0f9f2d9d",
           "steps": [
             {
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "arguments": {
-                "route": "d62b42b8-7a22-4e9f-9d16-0a6890b7243f",
+                "route": "f9df28b8-8feb-4eed-96b1-47be49626a76",
                 "title": "Securonix: Get Top Violators",
                 "resources": [
                   "alerts"
@@ -781,7 +1480,7 @@
               "left": "280",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
               "group": null,
-              "uuid": "9cd8a234-8d44-49c2-be11-2e4922f9ca1a"
+              "uuid": "1b74ebad-b882-460b-b985-2f5b0f9f2d9d"
             },
             {
               "@type": "WorkflowStep",
@@ -796,7 +1495,7 @@
                   "dateunit": "Hours",
                   "dateunitvalue": "Last 24 Hours"
                 },
-                "version": "2.0.2",
+                "version": "2.1.0",
                 "connector": "securonix-snypr",
                 "operation": "get_top_violators",
                 "operationTitle": "Get Top Violators",
@@ -807,1425 +1506,24 @@
               "left": "280",
               "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
               "group": null,
-              "uuid": "a94d0882-dff1-4752-a773-5823ccf37497"
+              "uuid": "bca07d96-4bb6-43c5-b3d8-584ac07c30ef"
             }
           ],
           "routes": [
             {
               "@type": "WorkflowRoute",
               "name": "Start -> Get Top Violators",
-              "targetStep": "/api/3/workflow_steps/a94d0882-dff1-4752-a773-5823ccf37497",
-              "sourceStep": "/api/3/workflow_steps/9cd8a234-8d44-49c2-be11-2e4922f9ca1a",
+              "targetStep": "/api/3/workflow_steps/bca07d96-4bb6-43c5-b3d8-584ac07c30ef",
+              "sourceStep": "/api/3/workflow_steps/1b74ebad-b882-460b-b985-2f5b0f9f2d9d",
               "label": null,
               "isExecuted": false,
-              "uuid": "e12cddc4-e05e-4623-9329-fc2d0d218cdf"
+              "uuid": "e1940ed4-94f2-4a71-8139-ca25141f38de"
             }
           ],
           "groups": [],
           "priority": null,
-          "uuid": "7cfb6247-c3de-4d95-afa6-8acade41bcb0",
-          "id": 3260,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "securonix-snypr"
-          ]
-        },
-        {
-          "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Query Violations",
-          "aliasName": null,
-          "tag": "#Securonix-SNYPR",
-          "description": "Retrieves details of all violations or specific violations from Securonix SNYPR based on the query attributes and other input parameters that you have specified.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1661752700,
-          "collection": "/api/3/workflow_collections/13c39e12-aac8-4fe2-b711-736c12313e07",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/9fa64be5-eb15-4c06-84de-6a81b7b5225b",
-          "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Query Violations",
-              "description": null,
-              "arguments": {
-                "name": "Securonix SNYPR",
-                "config": "6b6b9b3f-67d5-4fed-95db-115804736e37",
-                "params": {
-                  "query": "category=MALWARE and violator=Activityip",
-                  "generationtime_to": "2019-08-07T18:30:00.000Z",
-                  "generationtime_from": "2019-07-31T18:30:00.000Z"
-                },
-                "version": "2.0.2",
-                "connector": "securonix-snypr",
-                "operation": "query_violations",
-                "operationTitle": "Query Violations",
-                "step_variables": []
-              },
-              "status": null,
-              "top": "140",
-              "left": "280",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "73f6c5ea-0259-4166-9a38-8cc1ef4bb550"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "route": "556271f1-7409-4710-94fa-edcb53f2610d",
-                "title": "Securonix: Query Violations",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
-                "step_variables": {
-                  "input": {
-                    "records": "{{vars.input.records}}"
-                  }
-                },
-                "displayConditions": {
-                  "alerts": {
-                    "sort": [],
-                    "limit": 30,
-                    "logic": "AND",
-                    "filters": []
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
-              },
-              "status": null,
-              "top": "20",
-              "left": "280",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "9fa64be5-eb15-4c06-84de-6a81b7b5225b"
-            }
-          ],
-          "routes": [
-            {
-              "@type": "WorkflowRoute",
-              "name": "Start -> Query Violations1",
-              "targetStep": "/api/3/workflow_steps/73f6c5ea-0259-4166-9a38-8cc1ef4bb550",
-              "sourceStep": "/api/3/workflow_steps/9fa64be5-eb15-4c06-84de-6a81b7b5225b",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "8245bb50-a6be-4e53-9c4d-d1ade4196c0c"
-            }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "89014f80-82c7-4f1f-b818-c3a35495a616",
-          "id": 3270,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "securonix-snypr"
-          ]
-        },
-        {
-          "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Add Comment",
-          "aliasName": null,
-          "tag": "#Securonix-SNYPR",
-          "description": "Adds a comment on a Securonix SNYPR incident based on the incident ID you have specified.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1661752700,
-          "collection": "/api/3/workflow_collections/13c39e12-aac8-4fe2-b711-736c12313e07",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/7b16bb1d-eae1-4baf-8bc2-c7d4c0b6ec1b",
-          "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "route": "ab26d29a-9cfd-444f-8749-2a36ef68d60e",
-                "title": "Securonix-snypr: Add Comment",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
-                "step_variables": {
-                  "input": {
-                    "records": "{{vars.input.records}}"
-                  }
-                },
-                "displayConditions": {
-                  "alerts": {
-                    "sort": [],
-                    "limit": 30,
-                    "logic": "AND",
-                    "filters": []
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
-              },
-              "status": null,
-              "top": "20",
-              "left": "140",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "7b16bb1d-eae1-4baf-8bc2-c7d4c0b6ec1b"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Add Comment",
-              "description": null,
-              "arguments": {
-                "name": "Securonix SNYPR",
-                "config": "2379436e-599a-4c02-a73d-76f89cc3c834",
-                "params": {
-                  "comment": "Comment from CyOPs connector",
-                  "incidentId": "10029"
-                },
-                "version": "2.0.2",
-                "connector": "securonix-snypr",
-                "operation": "add_comment",
-                "operationTitle": "Add Comment",
-                "step_variables": []
-              },
-              "status": null,
-              "top": "150",
-              "left": "140",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "c0e3d5bd-f700-49f2-90b2-0667a35d4647"
-            }
-          ],
-          "routes": [
-            {
-              "@type": "WorkflowRoute",
-              "name": "Start -> Add Comment",
-              "targetStep": "/api/3/workflow_steps/c0e3d5bd-f700-49f2-90b2-0667a35d4647",
-              "sourceStep": "/api/3/workflow_steps/7b16bb1d-eae1-4baf-8bc2-c7d4c0b6ec1b",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "05fdf8bb-9464-48ff-aa71-58916a1905db"
-            }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "8a060fec-0694-4714-accd-946e9324ea33",
-          "id": 3253,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "securonix-snypr"
-          ]
-        },
-        {
-          "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Get Top Violations",
-          "aliasName": null,
-          "tag": "#Securonix-SNYPR",
-          "description": "Retrieves the top violations from Securonix SNYPR based on when the violation was last seen and other input parameters that you have specified.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1661752700,
-          "collection": "/api/3/workflow_collections/13c39e12-aac8-4fe2-b711-736c12313e07",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/7e693bcf-305b-4388-b7ea-fc7c2d1edae3",
-          "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "route": "222a7f8e-181c-4c61-a031-ec3fdfa36d16",
-                "title": "Securonix: Get Top Violations",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
-                "step_variables": {
-                  "input": {
-                    "records": "{{vars.input.records}}"
-                  }
-                },
-                "displayConditions": {
-                  "alerts": {
-                    "sort": [],
-                    "limit": 30,
-                    "logic": "AND",
-                    "filters": []
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
-              },
-              "status": null,
-              "top": "20",
-              "left": "280",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "7e693bcf-305b-4388-b7ea-fc7c2d1edae3"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Get Top Violations",
-              "description": null,
-              "arguments": {
-                "name": "Securonix SNYPR",
-                "config": "da061c02e08e46c08fe0b911a0a16ee4",
-                "params": {
-                  "dateunit": "Hours",
-                  "dateunitvalue": "Last 72 Hours"
-                },
-                "version": "2.0.2",
-                "connector": "securonix-snypr",
-                "operation": "get_top_violations",
-                "operationTitle": "Get Top Violations",
-                "step_variables": []
-              },
-              "status": null,
-              "top": "140",
-              "left": "280",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "ca80fe0f-3f6c-4244-88c1-55af68c6bfdf"
-            }
-          ],
-          "routes": [
-            {
-              "@type": "WorkflowRoute",
-              "name": "Start -> Get Top Violators",
-              "targetStep": "/api/3/workflow_steps/ca80fe0f-3f6c-4244-88c1-55af68c6bfdf",
-              "sourceStep": "/api/3/workflow_steps/7e693bcf-305b-4388-b7ea-fc7c2d1edae3",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "bc1e7cd5-603b-4e73-a0f2-a3f62498f797"
-            }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "8d6574d5-cb30-4446-9af7-843e58320c54",
-          "id": 3257,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "securonix-snypr"
-          ]
-        },
-        {
-          "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Get Default",
-          "aliasName": null,
-          "tag": "#Securonix-SNYPR",
-          "description": "Get default assignee for specified workflow from Securonix SNYPR.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1661752700,
-          "collection": "/api/3/workflow_collections/13c39e12-aac8-4fe2-b711-736c12313e07",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/e40c9594-f858-4701-8741-e4717d486a4e",
-          "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Get Workflow Default Assignee",
-              "description": null,
-              "arguments": {
-                "name": "Securonix SNYPR",
-                "config": "6b6b9b3f-67d5-4fed-95db-115804736e37",
-                "params": {
-                  "workflow": "SOCTeamReview"
-                },
-                "version": "2.0.2",
-                "connector": "securonix-snypr",
-                "operation": "get_workflow_default_assignee",
-                "operationTitle": "Get Workflow Default Assignee",
-                "step_variables": []
-              },
-              "status": null,
-              "top": "166",
-              "left": "272",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "24a5928d-07d4-44f2-b478-8a25f80f452b"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "route": "08b116bb-a4a2-46a7-b0a8-41646ff56e7b",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
-                "step_variables": {
-                  "input": {
-                    "records": "{{vars.input.records}}"
-                  }
-                },
-                "displayConditions": {
-                  "alerts": {
-                    "sort": [],
-                    "limit": 30,
-                    "logic": "AND",
-                    "filters": []
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
-              },
-              "status": null,
-              "top": "20",
-              "left": "106",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "e40c9594-f858-4701-8741-e4717d486a4e"
-            }
-          ],
-          "routes": [
-            {
-              "@type": "WorkflowRoute",
-              "name": "Start -> Get Workflow Default Assignee",
-              "targetStep": "/api/3/workflow_steps/24a5928d-07d4-44f2-b478-8a25f80f452b",
-              "sourceStep": "/api/3/workflow_steps/e40c9594-f858-4701-8741-e4717d486a4e",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "0927d58b-81e5-4761-b0ad-0d528fa9bffb"
-            }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "8dd6cc2a-e115-4d19-b95a-ec0fff4dd4e9",
-          "id": 3252,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "securonix-snypr"
-          ]
-        },
-        {
-          "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Get Possible Actions for Incident",
-          "aliasName": null,
-          "tag": "#Securonix-SNYPR",
-          "description": "Retrieves a list of all possible actions associated with a specific incident from Securonix SNYPR based on the incident ID you have specified.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1661752700,
-          "collection": "/api/3/workflow_collections/13c39e12-aac8-4fe2-b711-736c12313e07",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/d77e07ae-e433-4670-8650-39dd89095169",
-          "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Get Possible Actions for Incident",
-              "description": null,
-              "arguments": {
-                "name": "Securonix SNYPR",
-                "config": "2379436e-599a-4c02-a73d-76f89cc3c834",
-                "params": {
-                  "incidentId": "50107"
-                },
-                "version": "2.0.2",
-                "connector": "securonix-snypr",
-                "operation": "get_possible_action_for_incident",
-                "operationTitle": "Get Possible Actions for Incident",
-                "step_variables": []
-              },
-              "status": null,
-              "top": "148",
-              "left": "200",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "c0376750-426f-4cc3-95c2-82b814f189f1"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "route": "49447891-dc3e-4796-8985-fa824ca0f732",
-                "title": "Securonix-snypr: Get Possible Actions for Incident",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
-                "step_variables": {
-                  "input": {
-                    "records": "{{vars.input.records}}"
-                  }
-                },
-                "displayConditions": {
-                  "alerts": {
-                    "sort": [],
-                    "limit": 30,
-                    "logic": "AND",
-                    "filters": []
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
-              },
-              "status": null,
-              "top": "20",
-              "left": "200",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "d77e07ae-e433-4670-8650-39dd89095169"
-            }
-          ],
-          "routes": [
-            {
-              "@type": "WorkflowRoute",
-              "name": "Start -> Get Possible Actions for Incident",
-              "targetStep": "/api/3/workflow_steps/c0376750-426f-4cc3-95c2-82b814f189f1",
-              "sourceStep": "/api/3/workflow_steps/d77e07ae-e433-4670-8650-39dd89095169",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "eba551bf-2bba-4c58-9800-c78bfe84eeac"
-            }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "9d6758d9-1d7c-48ee-b2ff-08ee592a032c",
-          "id": 3266,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "securonix-snypr"
-          ]
-        },
-        {
-          "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Get Incident Workflow",
-          "aliasName": null,
-          "tag": "#Securonix-SNYPR",
-          "description": "Retrieves the workflow of a specific incident from Securonix SNYPR based on the incident ID you have specified.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1661752700,
-          "collection": "/api/3/workflow_collections/13c39e12-aac8-4fe2-b711-736c12313e07",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/204e7788-e32e-40ac-b948-881854bb8c1e",
-          "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "route": "6f90f331-4ecb-4188-9909-db7510f39275",
-                "title": "Securonix-snypr: Get Incident Workflow",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
-                "step_variables": {
-                  "input": {
-                    "records": "{{vars.input.records}}"
-                  }
-                },
-                "displayConditions": {
-                  "alerts": {
-                    "sort": [],
-                    "limit": 30,
-                    "logic": "AND",
-                    "filters": []
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
-              },
-              "status": null,
-              "top": "26",
-              "left": "272",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "204e7788-e32e-40ac-b948-881854bb8c1e"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Get Incident Workflow",
-              "description": null,
-              "arguments": {
-                "name": "Securonix SNYPR",
-                "config": "2379436e-599a-4c02-a73d-76f89cc3c834",
-                "params": {
-                  "incidentId": "50107"
-                },
-                "version": "2.0.2",
-                "connector": "securonix-snypr",
-                "operation": "get_incident_workflow",
-                "operationTitle": "Get Incident Workflow",
-                "step_variables": []
-              },
-              "status": null,
-              "top": "152",
-              "left": "272",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "cf095be8-ec2e-45eb-b9ce-257eca89c270"
-            }
-          ],
-          "routes": [
-            {
-              "@type": "WorkflowRoute",
-              "name": "Start -> Get Incident Status",
-              "targetStep": "/api/3/workflow_steps/cf095be8-ec2e-45eb-b9ce-257eca89c270",
-              "sourceStep": "/api/3/workflow_steps/204e7788-e32e-40ac-b948-881854bb8c1e",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "cd0deee9-a18d-4b49-8ff6-48e84a601884"
-            }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "9eded293-e83e-4f84-b341-84cd388aac55",
-          "id": 3263,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "securonix-snypr"
-          ]
-        },
-        {
-          "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Get Risk History",
-          "aliasName": null,
-          "tag": "#Securonix-SNYPR",
-          "description": "Retrieves risk history for all users or risk history from Securonix SNYPR based on the query attributes and other input parameters that you have specified.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1661752700,
-          "collection": "/api/3/workflow_collections/13c39e12-aac8-4fe2-b711-736c12313e07",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/1b276d42-a9fa-481d-8514-1d7d80450ca0",
-          "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "route": "f993fc21-64d1-4333-a22d-0ba341b648b1",
-                "title": "Securonix: Get Risk History",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
-                "step_variables": {
-                  "input": {
-                    "records": "{{vars.input.records}}"
-                  }
-                },
-                "displayConditions": {
-                  "alerts": {
-                    "sort": [],
-                    "limit": 30,
-                    "logic": "AND",
-                    "filters": []
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
-              },
-              "status": null,
-              "top": "20",
-              "left": "280",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "1b276d42-a9fa-481d-8514-1d7d80450ca0"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Get Risk History",
-              "description": null,
-              "arguments": {
-                "name": "Securonix SNYPR",
-                "config": "da061c02e08e46c08fe0b911a0a16ee4",
-                "params": {
-                  "to": "2019-08-06T18:30:00.000Z",
-                  "from": "2019-07-31T18:30:00.000Z",
-                  "query": "employeeid = \"1001\""
-                },
-                "version": "2.0.2",
-                "connector": "securonix-snypr",
-                "operation": "get_risk_history",
-                "operationTitle": "Get Risk History",
-                "step_variables": []
-              },
-              "status": null,
-              "top": "150",
-              "left": "280",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "3b6b5f8c-5a20-4510-99e4-df90c5f444e2"
-            }
-          ],
-          "routes": [
-            {
-              "@type": "WorkflowRoute",
-              "name": "Start -> Get Risk History",
-              "targetStep": "/api/3/workflow_steps/3b6b5f8c-5a20-4510-99e4-df90c5f444e2",
-              "sourceStep": "/api/3/workflow_steps/1b276d42-a9fa-481d-8514-1d7d80450ca0",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "e44cd100-aaef-4937-9bef-249aa56819fe"
-            }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "a06979d7-4bb5-46ae-b9d5-a4c4c10c730b",
-          "id": 3261,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "securonix-snypr"
-          ]
-        },
-        {
-          "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "List All Resource Groups",
-          "aliasName": null,
-          "tag": "#Securonix-SNYPR",
-          "description": "Retrieves a list of all resource groups from Securonix SNYPR.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1661752700,
-          "collection": "/api/3/workflow_collections/13c39e12-aac8-4fe2-b711-736c12313e07",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/39d6ff87-8325-4d90-80d2-2e37bc310fd0",
-          "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "route": "19d00df1-123a-4328-9fb9-bc16374e4525",
-                "title": "Securonix: List All Resource Groups",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
-                "step_variables": {
-                  "input": {
-                    "records": "{{vars.input.records}}"
-                  }
-                },
-                "displayConditions": {
-                  "alerts": {
-                    "sort": [],
-                    "limit": 30,
-                    "logic": "AND",
-                    "filters": []
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
-              },
-              "status": null,
-              "top": "20",
-              "left": "280",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "39d6ff87-8325-4d90-80d2-2e37bc310fd0"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "List All Resource Groups",
-              "description": null,
-              "arguments": {
-                "name": "Securonix SNYPR",
-                "params": [],
-                "version": "2.0.2",
-                "connector": "securonix-snypr",
-                "operation": "list_resource_groups",
-                "operationTitle": "List All Resource Groups",
-                "step_variables": []
-              },
-              "status": null,
-              "top": "153",
-              "left": "280",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "cacbfab3-1217-4529-ae47-804d63ad95d6"
-            }
-          ],
-          "routes": [
-            {
-              "@type": "WorkflowRoute",
-              "name": "Start -> List All Resource Groups",
-              "targetStep": "/api/3/workflow_steps/cacbfab3-1217-4529-ae47-804d63ad95d6",
-              "sourceStep": "/api/3/workflow_steps/39d6ff87-8325-4d90-80d2-2e37bc310fd0",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "2ebd5ca4-d58a-4cea-8f55-25e638a15690"
-            }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "b469cd90-f820-4837-8337-4645c222c013",
-          "id": 3254,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "securonix-snypr"
-          ]
-        },
-        {
-          "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Get Workflows",
-          "aliasName": null,
-          "tag": "#Securonix-SNYPR",
-          "description": "Retrieves a list of all existing workflows from Securonix SNYPR.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1661752700,
-          "collection": "/api/3/workflow_collections/13c39e12-aac8-4fe2-b711-736c12313e07",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/66265bca-b5a2-4798-82e5-e4f3843cd529",
-          "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "route": "0ea0d0dd-5247-4c5d-8083-61602a709e28",
-                "title": "Securonix-snypr: Get Workflows",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
-                "step_variables": {
-                  "input": {
-                    "records": "{{vars.input.records}}"
-                  }
-                },
-                "displayConditions": {
-                  "alerts": {
-                    "sort": [],
-                    "limit": 30,
-                    "logic": "AND",
-                    "filters": []
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
-              },
-              "status": null,
-              "top": "14",
-              "left": "209",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "66265bca-b5a2-4798-82e5-e4f3843cd529"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Get Workflows",
-              "description": null,
-              "arguments": {
-                "name": "Securonix SNYPR",
-                "config": "2379436e-599a-4c02-a73d-76f89cc3c834",
-                "params": [],
-                "version": "2.0.2",
-                "connector": "securonix-snypr",
-                "operation": "get_workflows",
-                "operationTitle": "Get Workflows",
-                "step_variables": []
-              },
-              "status": null,
-              "top": "154",
-              "left": "209",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "bcb0a016-c767-4eda-89a1-0628748691c8"
-            }
-          ],
-          "routes": [
-            {
-              "@type": "WorkflowRoute",
-              "name": "Start -> Get Workflows",
-              "targetStep": "/api/3/workflow_steps/bcb0a016-c767-4eda-89a1-0628748691c8",
-              "sourceStep": "/api/3/workflow_steps/66265bca-b5a2-4798-82e5-e4f3843cd529",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "d67fbc0b-75cb-4c79-9048-c21a7a227b5e"
-            }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "b6039743-369e-4e08-b6b9-8ef0e27d1309",
-          "id": 3269,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "securonix-snypr"
-          ]
-        },
-        {
-          "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Get Risk Score",
-          "aliasName": null,
-          "tag": "#Securonix-SNYPR",
-          "description": "Retrieves risk scores for all users or risk scores from Securonix SNYPRbased on the query attributes and other input parameters that you have specified.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1661752700,
-          "collection": "/api/3/workflow_collections/13c39e12-aac8-4fe2-b711-736c12313e07",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/971f0a41-f64b-4d2e-88a1-42cbbcd3153b",
-          "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Get Risk Score",
-              "description": null,
-              "arguments": {
-                "name": "Securonix SNYPR",
-                "config": "da061c02e08e46c08fe0b911a0a16ee4",
-                "params": {
-                  "to": "2019-08-06T18:30:00.000Z",
-                  "from": "2019-08-01T13:11:10.749Z",
-                  "query": "employeeid = \"1001\" and policyname=\"Local accounts created on windows\""
-                },
-                "version": "2.0.2",
-                "connector": "securonix-snypr",
-                "operation": "get_risk_score",
-                "operationTitle": "Get Risk Score",
-                "step_variables": []
-              },
-              "status": null,
-              "top": "147",
-              "left": "280",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "950964dd-4a15-4d0c-9fef-ad1e0c735994"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "route": "ce8d2117-306e-4f34-9171-a1cae99c068b",
-                "title": "Securonix: Get Risk Score",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
-                "step_variables": {
-                  "input": {
-                    "records": "{{vars.input.records}}"
-                  }
-                },
-                "displayConditions": {
-                  "alerts": {
-                    "sort": [],
-                    "limit": 30,
-                    "logic": "AND",
-                    "filters": []
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
-              },
-              "status": null,
-              "top": "20",
-              "left": "280",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "971f0a41-f64b-4d2e-88a1-42cbbcd3153b"
-            }
-          ],
-          "routes": [
-            {
-              "@type": "WorkflowRoute",
-              "name": "Start -> Get Risk Score",
-              "targetStep": "/api/3/workflow_steps/950964dd-4a15-4d0c-9fef-ad1e0c735994",
-              "sourceStep": "/api/3/workflow_steps/971f0a41-f64b-4d2e-88a1-42cbbcd3153b",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "d4930eab-276b-4ab4-9806-275393f5f02e"
-            }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "b77cc9fd-bcf3-482f-9fa7-5e6273c03674",
-          "id": 3271,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "securonix-snypr"
-          ]
-        },
-        {
-          "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Query Users",
-          "aliasName": null,
-          "tag": "#Securonix-SNYPR",
-          "description": "Retrieves details of all users or specific users from Securonix SNYPR based on the query attributes that you have specified.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1661752700,
-          "collection": "/api/3/workflow_collections/13c39e12-aac8-4fe2-b711-736c12313e07",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/b1010e84-c108-49b3-bae5-1c8a0420d53b",
-          "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "route": "473a3792-efba-40de-a841-b6f8bc893cf8",
-                "title": "Securonix: Query Users",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
-                "step_variables": {
-                  "input": {
-                    "records": "{{vars.input.records}}"
-                  }
-                },
-                "displayConditions": {
-                  "alerts": {
-                    "sort": [],
-                    "limit": 30,
-                    "logic": "AND",
-                    "filters": []
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
-              },
-              "status": null,
-              "top": "20",
-              "left": "280",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "b1010e84-c108-49b3-bae5-1c8a0420d53b"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Query for Users",
-              "description": null,
-              "arguments": {
-                "name": "Securonix SNYPR",
-                "config": "da061c02e08e46c08fe0b911a0a16ee4",
-                "params": {
-                  "query": "employeeid = \"1001\""
-                },
-                "version": "2.0.2",
-                "connector": "securonix-snypr",
-                "operation": "query_users",
-                "operationTitle": "Query Users",
-                "step_variables": []
-              },
-              "status": null,
-              "top": "152",
-              "left": "280",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "f3024d73-0ee3-4f70-92fc-6d0a5acc7057"
-            }
-          ],
-          "routes": [
-            {
-              "@type": "WorkflowRoute",
-              "name": "Start -> Query for Users",
-              "targetStep": "/api/3/workflow_steps/f3024d73-0ee3-4f70-92fc-6d0a5acc7057",
-              "sourceStep": "/api/3/workflow_steps/b1010e84-c108-49b3-bae5-1c8a0420d53b",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "f3348b7a-8544-46c0-bcaa-3ae4a39b05f6"
-            }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "bb9f9a60-b8e8-4b12-be27-db8d36d69a84",
-          "id": 3256,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "securonix-snypr"
-          ]
-        },
-        {
-          "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "List Users",
-          "aliasName": null,
-          "tag": "#Securonix-SNYPR",
-          "description": "Retrieves a list of all users from Securonix SNYPR.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1661752700,
-          "collection": "/api/3/workflow_collections/13c39e12-aac8-4fe2-b711-736c12313e07",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/4692e1f6-18a0-4374-b8bb-301e998a7a26",
-          "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "route": "1db3a4b6-64ac-40a2-8f93-eb93e670f942",
-                "title": "Securonix: List Users",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
-                "step_variables": {
-                  "input": {
-                    "records": "{{vars.input.records}}"
-                  }
-                },
-                "displayConditions": {
-                  "alerts": {
-                    "sort": [],
-                    "limit": 30,
-                    "logic": "AND",
-                    "filters": []
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
-              },
-              "status": null,
-              "top": "20",
-              "left": "280",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "4692e1f6-18a0-4374-b8bb-301e998a7a26"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "List Users",
-              "description": null,
-              "arguments": {
-                "name": "Securonix SNYPR",
-                "config": "da061c02e08e46c08fe0b911a0a16ee4",
-                "params": [],
-                "version": "2.0.2",
-                "connector": "securonix-snypr",
-                "operation": "list_users",
-                "operationTitle": "List All Users",
-                "step_variables": []
-              },
-              "status": null,
-              "top": "140",
-              "left": "280",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "6b2855e7-7702-4b9e-85b7-1bfae1078394"
-            }
-          ],
-          "routes": [
-            {
-              "@type": "WorkflowRoute",
-              "name": "Start -> List Users",
-              "targetStep": "/api/3/workflow_steps/6b2855e7-7702-4b9e-85b7-1bfae1078394",
-              "sourceStep": "/api/3/workflow_steps/4692e1f6-18a0-4374-b8bb-301e998a7a26",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "f1a58797-f918-467e-ad60-aafe754f843b"
-            }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "dbf31b90-9034-4df6-bb92-a85b45aede8e",
-          "id": 3272,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "securonix-snypr"
-          ]
-        },
-        {
-          "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Query Watchlist",
-          "aliasName": null,
-          "tag": "#Securonix-SNYPR",
-          "description": "Retrieves details of all watchlists or specific watchlists from Securonix SNYPR based on the query attributes that you have specified.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1661752700,
-          "collection": "/api/3/workflow_collections/13c39e12-aac8-4fe2-b711-736c12313e07",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/6dcbedab-6604-4076-aee6-04ea03adb01d",
-          "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "route": "dc0f8019-282f-4b90-95a6-1b82daae157f",
-                "title": "Securonix: Query Watchlist",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
-                "step_variables": {
-                  "input": {
-                    "records": "{{vars.input.records}}"
-                  }
-                },
-                "displayConditions": {
-                  "alerts": {
-                    "sort": [],
-                    "limit": 30,
-                    "logic": "AND",
-                    "filters": []
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
-              },
-              "status": null,
-              "top": "20",
-              "left": "280",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "6dcbedab-6604-4076-aee6-04ea03adb01d"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Query Watchlist",
-              "description": null,
-              "arguments": {
-                "name": "Securonix SNYPR",
-                "config": "da061c02e08e46c08fe0b911a0a16ee4",
-                "params": {
-                  "query": "watchlistname=Recent_Hires"
-                },
-                "version": "2.0.2",
-                "connector": "securonix-snypr",
-                "operation": "query_watchlist",
-                "operationTitle": "Query Watchlist",
-                "step_variables": []
-              },
-              "status": null,
-              "top": "152",
-              "left": "280",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "d5508f8e-6364-42d4-8f9d-0ef28fb1feee"
-            }
-          ],
-          "routes": [
-            {
-              "@type": "WorkflowRoute",
-              "name": "Start -> Query for Watchlist",
-              "targetStep": "/api/3/workflow_steps/d5508f8e-6364-42d4-8f9d-0ef28fb1feee",
-              "sourceStep": "/api/3/workflow_steps/6dcbedab-6604-4076-aee6-04ea03adb01d",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "343aede7-d737-4673-b7c6-e2c8d6774550"
-            }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "df79e8fa-49b0-4a83-ab09-b08fce5cdf6b",
-          "id": 3268,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "securonix-snypr"
-          ]
-        },
-        {
-          "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Get Top Threats",
-          "aliasName": null,
-          "tag": "#Securonix-SNYPR",
-          "description": "Retrieves the top threats from Securonix SNYPR based on when the threat was last seen and other input parameters that you have specified.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1661752700,
-          "collection": "/api/3/workflow_collections/13c39e12-aac8-4fe2-b711-736c12313e07",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/bc3495ee-0cff-434d-9f65-952c4c6cca47",
-          "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "route": "b9b3beb7-ee40-4c87-84de-2172fc2b800b",
-                "title": "Securonix: Get Top Threats",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
-                "step_variables": {
-                  "input": {
-                    "records": "{{vars.input.records}}"
-                  }
-                },
-                "displayConditions": {
-                  "alerts": {
-                    "sort": [],
-                    "limit": 30,
-                    "logic": "AND",
-                    "filters": []
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
-              },
-              "status": null,
-              "top": "20",
-              "left": "280",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "bc3495ee-0cff-434d-9f65-952c4c6cca47"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Get Top Threats",
-              "description": null,
-              "arguments": {
-                "name": "Securonix SNYPR",
-                "config": "620b9113-4db1-4635-a8a4-631265327915",
-                "params": {
-                  "dateunit": "Hours",
-                  "dateunitvalue": "Last 24 Hours"
-                },
-                "version": "2.0.2",
-                "connector": "securonix-snypr",
-                "operation": "get_top_threats",
-                "operationTitle": "Get Top Threats",
-                "step_variables": []
-              },
-              "status": null,
-              "top": "160",
-              "left": "280",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "fc109cfd-f06a-465e-acc2-e095db15d725"
-            }
-          ],
-          "routes": [
-            {
-              "@type": "WorkflowRoute",
-              "name": "Start -> Get Top Threats",
-              "targetStep": "/api/3/workflow_steps/fc109cfd-f06a-465e-acc2-e095db15d725",
-              "sourceStep": "/api/3/workflow_steps/bc3495ee-0cff-434d-9f65-952c4c6cca47",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "fc9cb707-1e5e-4e03-b316-f75ee16548ad"
-            }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "e83c0c15-e7fa-44f6-b6ed-f558ea56c5db",
-          "id": 3258,
+          "uuid": "872d5918-9431-4016-a864-4b5a6ca57bfa",
+          "id": 5671,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -2247,17 +1545,44 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1661752700,
-          "collection": "/api/3/workflow_collections/13c39e12-aac8-4fe2-b711-736c12313e07",
+          "lastModifyDate": 1664877035,
+          "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
           "versions": [],
-          "triggerStep": "/api/3/workflow_steps/49dca941-619f-4c5f-a13b-1cae0fe043f9",
+          "triggerStep": "/api/3/workflow_steps/dfdfc699-72f6-43d5-b811-c0d0d9357be8",
           "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "List Incident",
+              "description": null,
+              "arguments": {
+                "name": "Securonix SNYPR",
+                "config": "2379436e-599a-4c02-a73d-76f89cc3c834",
+                "params": {
+                  "to": "2019-08-22T18:30:00.000Z",
+                  "from": "2019-07-31T13:23:41.972Z",
+                  "offset": 0,
+                  "status": "Open",
+                  "rangeType": "Updated"
+                },
+                "version": "2.1.0",
+                "connector": "securonix-snypr",
+                "operation": "list_incidents",
+                "operationTitle": "List Incidents",
+                "step_variables": []
+              },
+              "status": null,
+              "top": "153",
+              "left": "153",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "4148d4d8-d89c-48e3-be5b-e284fc9a9219"
+            },
             {
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "arguments": {
-                "route": "41ff27f6-5223-47a6-9136-36582cde6de8",
+                "route": "b8b178e4-9d9b-4fc3-9279-b1ae74f46957",
                 "title": "Securonix-snypr: List Incident",
                 "resources": [
                   "alerts"
@@ -2285,51 +1610,24 @@
               "left": "152",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
               "group": null,
-              "uuid": "49dca941-619f-4c5f-a13b-1cae0fe043f9"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "List Incident",
-              "description": null,
-              "arguments": {
-                "name": "Securonix SNYPR",
-                "config": "2379436e-599a-4c02-a73d-76f89cc3c834",
-                "params": {
-                  "to": "2019-08-22T18:30:00.000Z",
-                  "from": "2019-07-31T13:23:41.972Z",
-                  "offset": 0,
-                  "status": "Open",
-                  "rangeType": "Updated"
-                },
-                "version": "2.0.2",
-                "connector": "securonix-snypr",
-                "operation": "list_incidents",
-                "operationTitle": "List Incidents",
-                "step_variables": []
-              },
-              "status": null,
-              "top": "153",
-              "left": "153",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "63378f01-f467-4213-ae11-6085c9b3d372"
+              "uuid": "dfdfc699-72f6-43d5-b811-c0d0d9357be8"
             }
           ],
           "routes": [
             {
               "@type": "WorkflowRoute",
               "name": "Start -> List Incident",
-              "targetStep": "/api/3/workflow_steps/63378f01-f467-4213-ae11-6085c9b3d372",
-              "sourceStep": "/api/3/workflow_steps/49dca941-619f-4c5f-a13b-1cae0fe043f9",
+              "targetStep": "/api/3/workflow_steps/4148d4d8-d89c-48e3-be5b-e284fc9a9219",
+              "sourceStep": "/api/3/workflow_steps/dfdfc699-72f6-43d5-b811-c0d0d9357be8",
               "label": null,
               "isExecuted": false,
-              "uuid": "5a61fb5a-8bb8-4e6d-9007-a6bf624d1d63"
+              "uuid": "f32f5667-001d-40fe-a310-4b8b2f46bb62"
             }
           ],
           "groups": [],
           "priority": null,
-          "uuid": "e8860110-de35-4501-b6a9-f5cac7dce6af",
-          "id": 3262,
+          "uuid": "8a135be8-27c6-4705-a2b1-261cd920d075",
+          "id": 5686,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -2341,51 +1639,28 @@
         {
           "@type": "Workflow",
           "triggerLimit": null,
-          "name": "Get Incident Status",
+          "name": "Query Violations",
           "aliasName": null,
           "tag": "#Securonix-SNYPR",
-          "description": "Retrieves the status of a specific incident from Securonix SNYPR based on the incident ID you have specified.",
+          "description": "Retrieves details of all violations or specific violations from Securonix SNYPR based on the query attributes and other input parameters that you have specified.",
           "isActive": false,
           "debug": false,
           "singleRecordExecution": false,
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1661752700,
-          "collection": "/api/3/workflow_collections/13c39e12-aac8-4fe2-b711-736c12313e07",
+          "lastModifyDate": 1664877035,
+          "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
           "versions": [],
-          "triggerStep": "/api/3/workflow_steps/9b291397-fe8a-43c6-99d9-ed9c435ec47b",
+          "triggerStep": "/api/3/workflow_steps/85293bd2-d73e-4666-9cc4-72da40b8199c",
           "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Get Incident Status",
-              "description": null,
-              "arguments": {
-                "name": "Securonix SNYPR",
-                "config": "2379436e-599a-4c02-a73d-76f89cc3c834",
-                "params": {
-                  "incidentId": "50107"
-                },
-                "version": "2.0.2",
-                "connector": "securonix-snypr",
-                "operation": "get_incident_status",
-                "operationTitle": "Get Incident Status",
-                "step_variables": []
-              },
-              "status": null,
-              "top": "152",
-              "left": "272",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "14364d6c-59ef-4f87-b9b3-3477bd27602e"
-            },
             {
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "arguments": {
-                "route": "43190845-678a-460d-9d9a-af062c18841d",
-                "title": "Securonix-snypr: Get Incident Status",
+                "route": "f1dea83e-99c8-4bef-be83-050ebc7b853f",
+                "title": "Securonix: Query Violations",
                 "resources": [
                   "alerts"
                 ],
@@ -2408,28 +1683,551 @@
                 "singleRecordExecution": false
               },
               "status": null,
-              "top": "26",
-              "left": "272",
+              "top": "20",
+              "left": "280",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
               "group": null,
-              "uuid": "9b291397-fe8a-43c6-99d9-ed9c435ec47b"
+              "uuid": "85293bd2-d73e-4666-9cc4-72da40b8199c"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Query Violations",
+              "description": null,
+              "arguments": {
+                "name": "Securonix SNYPR",
+                "config": "6b6b9b3f-67d5-4fed-95db-115804736e37",
+                "params": {
+                  "query": "category=MALWARE and violator=Activityip",
+                  "generationtime_to": "2019-08-07T18:30:00.000Z",
+                  "generationtime_from": "2019-07-31T18:30:00.000Z"
+                },
+                "version": "2.1.0",
+                "connector": "securonix-snypr",
+                "operation": "query_violations",
+                "operationTitle": "Query Violations",
+                "step_variables": []
+              },
+              "status": null,
+              "top": "140",
+              "left": "280",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "b6be1de2-73b4-4b83-9ef1-4cce240716df"
             }
           ],
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "name": "Start -> Get Incident Status",
-              "targetStep": "/api/3/workflow_steps/14364d6c-59ef-4f87-b9b3-3477bd27602e",
-              "sourceStep": "/api/3/workflow_steps/9b291397-fe8a-43c6-99d9-ed9c435ec47b",
+              "name": "Start -> Query Violations1",
+              "targetStep": "/api/3/workflow_steps/b6be1de2-73b4-4b83-9ef1-4cce240716df",
+              "sourceStep": "/api/3/workflow_steps/85293bd2-d73e-4666-9cc4-72da40b8199c",
               "label": null,
               "isExecuted": false,
-              "uuid": "6fe42a23-24d9-49ac-bfef-032f76dba038"
+              "uuid": "ea8114c4-579d-4150-b8ba-e0a80dab847f"
             }
           ],
           "groups": [],
           "priority": null,
-          "uuid": "f865857e-da2d-483f-8048-5821b38e2c47",
-          "id": 3265,
+          "uuid": "8b1d583e-ea61-4a15-9109-4ee259d3e45b",
+          "id": 5672,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "securonix-snypr"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Top Violations",
+          "aliasName": null,
+          "tag": "#Securonix-SNYPR",
+          "description": "Retrieves the top violations from Securonix SNYPR based on when the violation was last seen and other input parameters that you have specified.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1664877035,
+          "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/fa996457-4973-4484-a7f9-934022b457d5",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Top Violations",
+              "description": null,
+              "arguments": {
+                "name": "Securonix SNYPR",
+                "config": "da061c02e08e46c08fe0b911a0a16ee4",
+                "params": {
+                  "dateunit": "Hours",
+                  "dateunitvalue": "Last 72 Hours"
+                },
+                "version": "2.1.0",
+                "connector": "securonix-snypr",
+                "operation": "get_top_violations",
+                "operationTitle": "Get Top Violations",
+                "step_variables": []
+              },
+              "status": null,
+              "top": "140",
+              "left": "280",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "d47d122a-e890-471d-a6b0-9004a5daa84b"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "8823eb51-aef1-4f53-8865-e586e1348443",
+                "title": "Securonix: Get Top Violations",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "displayConditions": {
+                  "alerts": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "280",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "fa996457-4973-4484-a7f9-934022b457d5"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Get Top Violators",
+              "targetStep": "/api/3/workflow_steps/d47d122a-e890-471d-a6b0-9004a5daa84b",
+              "sourceStep": "/api/3/workflow_steps/fa996457-4973-4484-a7f9-934022b457d5",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "4035a3ef-4023-4504-ac9b-921d8997a4dc"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "8f1dd25c-b395-48e5-8880-fedd9e24c477",
+          "id": 5674,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "securonix-snypr"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Risk Score",
+          "aliasName": null,
+          "tag": "#Securonix-SNYPR",
+          "description": "Retrieves risk scores for all users or risk scores from Securonix SNYPRbased on the query attributes and other input parameters that you have specified.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1664877035,
+          "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/66356105-70c4-4977-bb22-f16fbc389f46",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "f5d993d3-5fab-4625-bffe-67c9ae6c3fbb",
+                "title": "Securonix: Get Risk Score",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "displayConditions": {
+                  "alerts": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "280",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "66356105-70c4-4977-bb22-f16fbc389f46"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Risk Score",
+              "description": null,
+              "arguments": {
+                "name": "Securonix SNYPR",
+                "config": "da061c02e08e46c08fe0b911a0a16ee4",
+                "params": {
+                  "to": "2019-08-06T18:30:00.000Z",
+                  "from": "2019-08-01T13:11:10.749Z",
+                  "query": "employeeid = \"1001\" and policyname=\"Local accounts created on windows\""
+                },
+                "version": "2.1.0",
+                "connector": "securonix-snypr",
+                "operation": "get_risk_score",
+                "operationTitle": "Get Risk Score",
+                "step_variables": []
+              },
+              "status": null,
+              "top": "147",
+              "left": "280",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "8c0f0726-32cd-4b01-b561-0dfc6dc5364a"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Get Risk Score",
+              "targetStep": "/api/3/workflow_steps/8c0f0726-32cd-4b01-b561-0dfc6dc5364a",
+              "sourceStep": "/api/3/workflow_steps/66356105-70c4-4977-bb22-f16fbc389f46",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "ac8a1f24-d9d0-42f2-94e2-b0fcb87916d2"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "a4eb2504-24e6-4343-b272-195e45cf38be",
+          "id": 5681,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "securonix-snypr"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Add Comment",
+          "aliasName": null,
+          "tag": "#Securonix-SNYPR",
+          "description": "Adds a comment on a Securonix SNYPR incident based on the incident ID you have specified.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1664877035,
+          "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/fd7dffe3-6341-415a-a2af-0b685ad1499f",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Add Comment",
+              "description": null,
+              "arguments": {
+                "name": "Securonix SNYPR",
+                "config": "2379436e-599a-4c02-a73d-76f89cc3c834",
+                "params": {
+                  "comment": "Comment from CyOPs connector",
+                  "incidentId": "10029"
+                },
+                "version": "2.1.0",
+                "connector": "securonix-snypr",
+                "operation": "add_comment",
+                "operationTitle": "Add Comment",
+                "step_variables": []
+              },
+              "status": null,
+              "top": "150",
+              "left": "140",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "1bf7e987-f06c-4990-b1fc-2c0f5df4e3b1"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "e8893303-4eee-4fbb-bc57-a96665a7726f",
+                "title": "Securonix-snypr: Add Comment",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "displayConditions": {
+                  "alerts": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "140",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "fd7dffe3-6341-415a-a2af-0b685ad1499f"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Add Comment",
+              "targetStep": "/api/3/workflow_steps/1bf7e987-f06c-4990-b1fc-2c0f5df4e3b1",
+              "sourceStep": "/api/3/workflow_steps/fd7dffe3-6341-415a-a2af-0b685ad1499f",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "59276b12-59cc-4d8e-96f0-37f734b8ee63"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "a5c5f705-ecc0-4e0c-bc18-931721ba2f0b",
+          "id": 5673,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "securonix-snypr"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "List All Resource Groups",
+          "aliasName": null,
+          "tag": "#Securonix-SNYPR",
+          "description": "Retrieves a list of all resource groups from Securonix SNYPR.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1664877035,
+          "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/c0dbb94a-3e91-4053-9b3c-00549af23d4a",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "009a431e-c8de-4230-bea8-dc11819d1ce0",
+                "title": "Securonix: List All Resource Groups",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "displayConditions": {
+                  "alerts": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "280",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "c0dbb94a-3e91-4053-9b3c-00549af23d4a"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "List All Resource Groups",
+              "description": null,
+              "arguments": {
+                "name": "Securonix SNYPR",
+                "params": [],
+                "version": "2.1.0",
+                "connector": "securonix-snypr",
+                "operation": "list_resource_groups",
+                "operationTitle": "List All Resource Groups",
+                "step_variables": []
+              },
+              "status": null,
+              "top": "153",
+              "left": "280",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "f657fb0a-d375-4e03-9983-dfc46d62b4f0"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> List All Resource Groups",
+              "targetStep": "/api/3/workflow_steps/f657fb0a-d375-4e03-9983-dfc46d62b4f0",
+              "sourceStep": "/api/3/workflow_steps/c0dbb94a-3e91-4053-9b3c-00549af23d4a",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "581a0018-fc43-4316-87ec-344d31020143"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "aa14809f-03fe-4012-8387-b62c70813486",
+          "id": 5679,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "securonix-snypr"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "List All Peer Groups",
+          "aliasName": null,
+          "tag": "#Securonix-SNYPR",
+          "description": "Retrieves a list of all peer groups from Securonix SNYPR.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1664877035,
+          "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/c35bd125-4a53-4772-ade2-b301cf4b249b",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "List All Peer Groups",
+              "description": null,
+              "arguments": {
+                "name": "Securonix SNYPR",
+                "params": [],
+                "version": "2.1.0",
+                "connector": "securonix-snypr",
+                "operation": "list_peer_groups",
+                "operationTitle": "List All Peer Groups",
+                "step_variables": []
+              },
+              "status": null,
+              "top": "140",
+              "left": "280",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "7683a5b9-bf59-4fec-87b4-9d3650088ff2"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "5fab912a-c559-4153-a219-a288fae18226",
+                "title": "Securonix: List All Peer Groups",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "displayConditions": {
+                  "alerts": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "280",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "c35bd125-4a53-4772-ade2-b301cf4b249b"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> List All Peer Groups",
+              "targetStep": "/api/3/workflow_steps/7683a5b9-bf59-4fec-87b4-9d3650088ff2",
+              "sourceStep": "/api/3/workflow_steps/c35bd125-4a53-4772-ade2-b301cf4b249b",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "fee886d1-a8c8-43a3-87c0-e631e4fc96e0"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "b5597930-2f1d-4516-a1ff-36b7286e2db5",
+          "id": 5665,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -2451,17 +2249,17 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1661752700,
-          "collection": "/api/3/workflow_collections/13c39e12-aac8-4fe2-b711-736c12313e07",
+          "lastModifyDate": 1664877035,
+          "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
           "versions": [],
-          "triggerStep": "/api/3/workflow_steps/25a63f97-1d84-4b23-b331-686d701b03f6",
+          "triggerStep": "/api/3/workflow_steps/4c1ac9e9-95af-46f6-bf28-d820a92be302",
           "steps": [
             {
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "arguments": {
-                "route": "da9617f6-5c20-492e-90c4-e5f032978147",
+                "route": "3e90563d-5e23-4a90-8f44-8ae524646b67",
                 "title": "Securonix-snypr: Get Incident Details",
                 "resources": [
                   "alerts"
@@ -2489,7 +2287,7 @@
               "left": "260",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
               "group": null,
-              "uuid": "25a63f97-1d84-4b23-b331-686d701b03f6"
+              "uuid": "4c1ac9e9-95af-46f6-bf28-d820a92be302"
             },
             {
               "@type": "WorkflowStep",
@@ -2501,7 +2299,7 @@
                 "params": {
                   "incidentId": "25"
                 },
-                "version": "2.0.2",
+                "version": "2.1.0",
                 "connector": "securonix-snypr",
                 "operation": "get_incident_details",
                 "operationTitle": "Get Incident Details",
@@ -2512,24 +2310,24 @@
               "left": "260",
               "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
               "group": null,
-              "uuid": "fe5d15c9-6951-4379-920f-f279c7411cba"
+              "uuid": "73e2dcb8-49e6-45fa-a89e-17168da2d0ab"
             }
           ],
           "routes": [
             {
               "@type": "WorkflowRoute",
               "name": "Start -> Get Incident Details",
-              "targetStep": "/api/3/workflow_steps/fe5d15c9-6951-4379-920f-f279c7411cba",
-              "sourceStep": "/api/3/workflow_steps/25a63f97-1d84-4b23-b331-686d701b03f6",
+              "targetStep": "/api/3/workflow_steps/73e2dcb8-49e6-45fa-a89e-17168da2d0ab",
+              "sourceStep": "/api/3/workflow_steps/4c1ac9e9-95af-46f6-bf28-d820a92be302",
               "label": null,
               "isExecuted": false,
-              "uuid": "b18845ee-0330-48a8-920f-e4af87979cc3"
+              "uuid": "cc1a08db-2351-47e2-a05d-21e9792e2537"
             }
           ],
           "groups": [],
           "priority": null,
-          "uuid": "f93d7e96-57df-423a-bc6b-a33218847c04",
-          "id": 3251,
+          "uuid": "b5a62b16-d432-4eb8-ab4d-081bee846ad4",
+          "id": 5688,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -2541,28 +2339,152 @@
         {
           "@type": "Workflow",
           "triggerLimit": null,
-          "name": "List All Policies",
+          "name": "Get Incident Workflow",
           "aliasName": null,
           "tag": "#Securonix-SNYPR",
-          "description": "Retrieves a list of all policies from Securonix SNYPR.",
+          "description": "Retrieves the workflow of a specific incident from Securonix SNYPR based on the incident ID you have specified.",
           "isActive": false,
           "debug": false,
           "singleRecordExecution": false,
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1661752700,
-          "collection": "/api/3/workflow_collections/13c39e12-aac8-4fe2-b711-736c12313e07",
+          "lastModifyDate": 1664877035,
+          "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
           "versions": [],
-          "triggerStep": "/api/3/workflow_steps/04773216-fbe2-47d5-8dea-61a4919b92b9",
+          "triggerStep": "/api/3/workflow_steps/e078ae75-bb8b-4c10-b28d-5f9c21203d9c",
           "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Incident Workflow",
+              "description": null,
+              "arguments": {
+                "name": "Securonix SNYPR",
+                "config": "2379436e-599a-4c02-a73d-76f89cc3c834",
+                "params": {
+                  "incidentId": "50107"
+                },
+                "version": "2.1.0",
+                "connector": "securonix-snypr",
+                "operation": "get_incident_workflow",
+                "operationTitle": "Get Incident Workflow",
+                "step_variables": []
+              },
+              "status": null,
+              "top": "152",
+              "left": "272",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "d2997caa-6704-49cd-be9b-17d877308eba"
+            },
             {
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "arguments": {
-                "route": "7bbbe7a3-b68a-4f41-a9ff-63160a040852",
-                "title": "Securonix: List All Policies",
+                "route": "85549e42-4ff1-4c76-8802-2e106a443b53",
+                "title": "Securonix-snypr: Get Incident Workflow",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "displayConditions": {
+                  "alerts": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "26",
+              "left": "272",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "e078ae75-bb8b-4c10-b28d-5f9c21203d9c"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Get Incident Status",
+              "targetStep": "/api/3/workflow_steps/d2997caa-6704-49cd-be9b-17d877308eba",
+              "sourceStep": "/api/3/workflow_steps/e078ae75-bb8b-4c10-b28d-5f9c21203d9c",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "b416260f-20d1-4325-9589-91c10a10e8e1"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "b9d09ce3-14ed-4ede-8085-8ebdb60db4b8",
+          "id": 5677,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "securonix-snypr"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Check Task on Incident",
+          "aliasName": null,
+          "tag": "#Securonix-SNYPR",
+          "description": "Checks if the action that you have specified is allowed on the specified Securonix SNYPR incident based on the incident ID and action name you have specified.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1664877035,
+          "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/b140d175-7110-4705-8be6-7d157cc83e2e",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Check Task on Incident",
+              "description": null,
+              "arguments": {
+                "name": "Securonix SNYPR",
+                "config": "2379436e-599a-4c02-a73d-76f89cc3c834",
+                "params": {
+                  "actionName": "CLAIM",
+                  "incidentId": "10029"
+                },
+                "version": "2.1.0",
+                "connector": "securonix-snypr",
+                "operation": "check_task_on_incident",
+                "operationTitle": "Check Task on Incident",
+                "step_variables": []
+              },
+              "status": null,
+              "top": "153",
+              "left": "180",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "0c06c8f5-0efa-436f-b531-5260b83775d3"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "fc9535c5-bac7-4836-ba9d-216e8a2d359d",
+                "title": "Securonix-snypr: Check Task on Incident",
                 "resources": [
                   "alerts"
                 ],
@@ -2586,47 +2508,125 @@
               },
               "status": null,
               "top": "20",
-              "left": "280",
+              "left": "180",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
               "group": null,
-              "uuid": "04773216-fbe2-47d5-8dea-61a4919b92b9"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "List All Policies",
-              "description": null,
-              "arguments": {
-                "name": "Securonix SNYPR",
-                "params": [],
-                "version": "2.0.2",
-                "connector": "securonix-snypr",
-                "operation": "list_policies",
-                "operationTitle": "List All Policies",
-                "step_variables": []
-              },
-              "status": null,
-              "top": "152",
-              "left": "280",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "1ae153d9-e1e6-4dc2-a588-6729aca06abd"
+              "uuid": "b140d175-7110-4705-8be6-7d157cc83e2e"
             }
           ],
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "name": "Start -> List All Policies",
-              "targetStep": "/api/3/workflow_steps/1ae153d9-e1e6-4dc2-a588-6729aca06abd",
-              "sourceStep": "/api/3/workflow_steps/04773216-fbe2-47d5-8dea-61a4919b92b9",
+              "name": "Start -> Check Task on Incident",
+              "targetStep": "/api/3/workflow_steps/0c06c8f5-0efa-436f-b531-5260b83775d3",
+              "sourceStep": "/api/3/workflow_steps/b140d175-7110-4705-8be6-7d157cc83e2e",
               "label": null,
               "isExecuted": false,
-              "uuid": "4e0c1063-0eaa-4d36-be36-f24a9ea301b3"
+              "uuid": "e37873c1-682e-4326-b6c4-9abcc18fbbb1"
             }
           ],
           "groups": [],
           "priority": null,
-          "uuid": "fdfb500d-73e7-4219-94a6-2b3e9a4cb76a",
-          "id": 3259,
+          "uuid": "c1261d59-a76f-494e-a698-cf64c52c3348",
+          "id": 5664,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "securonix-snypr"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Available Threat Action",
+          "aliasName": null,
+          "tag": "#Securonix-SNYPR",
+          "description": "Retrieves a list of all available threat actions from Securonix SNYPR.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1664877035,
+          "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/bfc5d35e-6cf3-40c4-954b-0e50edc639e3",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Available Threat Action",
+              "description": null,
+              "arguments": {
+                "name": "Securonix SNYPR",
+                "config": "2379436e-599a-4c02-a73d-76f89cc3c834",
+                "params": [],
+                "version": "2.1.0",
+                "connector": "securonix-snypr",
+                "operation": "get_available_threat_action",
+                "operationTitle": "Get Available Threat Action",
+                "step_variables": []
+              },
+              "status": null,
+              "top": "166",
+              "left": "249",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "936eca3f-94b9-40b0-bac6-6a921bb8af2c"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "5cde699d-904d-41b6-bbde-a036ee03ef77",
+                "title": "Securonix-snypr: Get Available Threat Action",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "displayConditions": {
+                  "alerts": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "249",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "bfc5d35e-6cf3-40c4-954b-0e50edc639e3"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Get Available Threat Action",
+              "targetStep": "/api/3/workflow_steps/936eca3f-94b9-40b0-bac6-6a921bb8af2c",
+              "sourceStep": "/api/3/workflow_steps/bfc5d35e-6cf3-40c4-954b-0e50edc639e3",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "a64e5f12-9350-402f-86a7-0efe89fd4015"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "fb17c62c-507e-4ee4-b095-6e302185ac45",
+          "id": 5666,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
