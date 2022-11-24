@@ -8,7 +8,7 @@
       "visible": true,
       "image": "",
       "uuid": "e201c879-bd9b-4a41-87bf-93fcf1a490c4",
-      "id": 383,
+      "id": 66,
       "deletedAt": null,
       "importedBy": [],
       "recordTags": [],
@@ -26,7 +26,7 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1664877035,
+          "lastModifyDate": 1669280713,
           "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
           "versions": [],
           "triggerStep": "/api/3/workflow_steps/615e1991-1c64-4b10-87e4-17e57c8b924b",
@@ -37,13 +37,14 @@
               "description": null,
               "arguments": {
                 "route": "f4ffc754-41ff-4cbe-b2d4-39d32ea7f8fa",
-                "title": "Securonix: Query Users",
+                "title": "Securonix SNYPR: Query Users",
                 "resources": [
                   "alerts"
                 ],
                 "inputVariables": [],
                 "step_variables": {
                   "input": {
+                    "params": [],
                     "records": "{{vars.input.records}}"
                   }
                 },
@@ -104,13 +105,14 @@
           "groups": [],
           "priority": null,
           "uuid": "08fe322a-9eb0-40b7-a535-0b2f2ebe5a8f",
-          "id": 5682,
+          "id": 782,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
           "importedBy": [],
           "recordTags": [
-            "securonix-snypr"
+            "securonix-snypr",
+            "Securonix"
           ]
         },
         {
@@ -126,7 +128,7 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1664877035,
+          "lastModifyDate": 1669280745,
           "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
           "versions": [],
           "triggerStep": "/api/3/workflow_steps/561a276f-1324-42b2-8387-ea7cfebee4b1",
@@ -137,13 +139,14 @@
               "description": null,
               "arguments": {
                 "route": "ff1f23cd-cc2a-431a-a371-9105215eed0f",
-                "title": "Securonix-snypr: Get Possible Actions for Incident",
+                "title": "Securonix SNYPR: Get Possible Actions for Incident",
                 "resources": [
                   "alerts"
                 ],
                 "inputVariables": [],
                 "step_variables": {
                   "input": {
+                    "params": [],
                     "records": "{{vars.input.records}}"
                   }
                 },
@@ -204,13 +207,14 @@
           "groups": [],
           "priority": null,
           "uuid": "0a588246-390c-4cb8-ab79-ba0bd0cf895b",
-          "id": 5676,
+          "id": 783,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
           "importedBy": [],
           "recordTags": [
-            "securonix-snypr"
+            "securonix-snypr",
+            "Securonix"
           ]
         },
         {
@@ -226,7 +230,7 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1664877035,
+          "lastModifyDate": 1669280775,
           "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
           "versions": [],
           "triggerStep": "/api/3/workflow_steps/cd3c984a-a8c4-4ae6-b22d-2b35f16080aa",
@@ -258,13 +262,14 @@
               "description": null,
               "arguments": {
                 "route": "3422d185-6be2-4819-a103-8f6dfdfe460a",
-                "title": "Securonix-snypr: Get Workflows",
+                "title": "Securonix SNYPR: Get Workflows",
                 "resources": [
                   "alerts"
                 ],
                 "inputVariables": [],
                 "step_variables": {
                   "input": {
+                    "params": [],
                     "records": "{{vars.input.records}}"
                   }
                 },
@@ -281,8 +286,8 @@
                 "singleRecordExecution": false
               },
               "status": null,
-              "top": "14",
-              "left": "209",
+              "top": "20",
+              "left": "200",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
               "group": null,
               "uuid": "cd3c984a-a8c4-4ae6-b22d-2b35f16080aa"
@@ -302,13 +307,14 @@
           "groups": [],
           "priority": null,
           "uuid": "12941b07-69b0-4d71-864b-7ad5b8f8e2f8",
-          "id": 5680,
+          "id": 784,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
           "importedBy": [],
           "recordTags": [
-            "securonix-snypr"
+            "securonix-snypr",
+            "Securonix"
           ]
         },
         {
@@ -324,7 +330,7 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1664877035,
+          "lastModifyDate": 1669280819,
           "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
           "versions": [],
           "triggerStep": "/api/3/workflow_steps/683fc897-f2d7-427b-98a9-2a60663a4628",
@@ -362,13 +368,14 @@
               "description": null,
               "arguments": {
                 "route": "22dece59-d3c2-4318-99f9-dbec6f1c92cc",
-                "title": "Securonix: Custom Query",
+                "title": "Securonix SNYPR: Custom Query",
                 "resources": [
                   "alerts"
                 ],
                 "inputVariables": [],
                 "step_variables": {
                   "input": {
+                    "params": [],
                     "records": "{{vars.input.records}}"
                   }
                 },
@@ -406,13 +413,14 @@
           "groups": [],
           "priority": null,
           "uuid": "2f5e4ff3-1288-4fef-94dc-58369855ee15",
-          "id": 5667,
+          "id": 785,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
           "importedBy": [],
           "recordTags": [
-            "securonix-snypr"
+            "securonix-snypr",
+            "Securonix"
           ]
         },
         {
@@ -428,7 +436,7 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1664877035,
+          "lastModifyDate": 1669280947,
           "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
           "versions": [],
           "triggerStep": "/api/3/workflow_steps/c5561ff5-3fe8-4a3d-b36f-0f72be3b7a90",
@@ -464,13 +472,14 @@
               "description": null,
               "arguments": {
                 "route": "5139bd4a-b828-4f86-80bb-4c4cfb9ee5b4",
-                "title": "Securonix-snypr: Take Action on Incident",
+                "title": "Securonix SNYPR: Task Action on Incident",
                 "resources": [
                   "alerts"
                 ],
                 "inputVariables": [],
                 "step_variables": {
                   "input": {
+                    "params": [],
                     "records": "{{vars.input.records}}"
                   }
                 },
@@ -508,13 +517,14 @@
           "groups": [],
           "priority": null,
           "uuid": "3d40f66a-a85b-4ece-9e1e-02eb3b0419cb",
-          "id": 5668,
+          "id": 786,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
           "importedBy": [],
           "recordTags": [
-            "securonix-snypr"
+            "securonix-snypr",
+            "Securonix"
           ]
         },
         {
@@ -530,7 +540,7 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1664877035,
+          "lastModifyDate": 1669281128,
           "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
           "versions": [],
           "triggerStep": "/api/3/workflow_steps/7a1610ad-150c-4d50-bfdd-07420a3d3097",
@@ -541,13 +551,14 @@
               "description": null,
               "arguments": {
                 "route": "06235456-b69c-499a-ac13-fd3ac7825ac4",
-                "title": "Securonix-snypr: Get Incident Status",
+                "title": "Securonix SNYPR: Get Incident Status",
                 "resources": [
                   "alerts"
                 ],
                 "inputVariables": [],
                 "step_variables": {
                   "input": {
+                    "params": [],
                     "records": "{{vars.input.records}}"
                   }
                 },
@@ -564,8 +575,8 @@
                 "singleRecordExecution": false
               },
               "status": null,
-              "top": "26",
-              "left": "272",
+              "top": "20",
+              "left": "280",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
               "group": null,
               "uuid": "7a1610ad-150c-4d50-bfdd-07420a3d3097"
@@ -587,8 +598,8 @@
                 "step_variables": []
               },
               "status": null,
-              "top": "152",
-              "left": "272",
+              "top": "160",
+              "left": "280",
               "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
               "group": null,
               "uuid": "ce383b4f-db0e-431e-a44b-b483e591f9f6"
@@ -608,13 +619,14 @@
           "groups": [],
           "priority": null,
           "uuid": "3f6f3276-a880-4840-842e-6e14d08c313c",
-          "id": 5687,
+          "id": 787,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
           "importedBy": [],
           "recordTags": [
-            "securonix-snypr"
+            "securonix-snypr",
+            "Securonix"
           ]
         },
         {
@@ -630,7 +642,7 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1664877035,
+          "lastModifyDate": 1669281166,
           "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
           "versions": [],
           "triggerStep": "/api/3/workflow_steps/0b24612e-8253-41e8-912b-b80ef7106b9d",
@@ -641,13 +653,14 @@
               "description": null,
               "arguments": {
                 "route": "211ec982-d71c-4873-a69d-58629aa77fdc",
-                "title": "Securonix: Get Top Threats",
+                "title": "Securonix SNYPR: Get Top Threats",
                 "resources": [
                   "alerts"
                 ],
                 "inputVariables": [],
                 "step_variables": {
                   "input": {
+                    "params": [],
                     "records": "{{vars.input.records}}"
                   }
                 },
@@ -709,13 +722,14 @@
           "groups": [],
           "priority": null,
           "uuid": "4959fb54-1e54-49d4-9827-222cfe11e107",
-          "id": 5685,
+          "id": 788,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
           "importedBy": [],
           "recordTags": [
-            "securonix-snypr"
+            "securonix-snypr",
+            "Securonix"
           ]
         },
         {
@@ -731,7 +745,7 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1664877035,
+          "lastModifyDate": 1669281538,
           "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
           "versions": [],
           "triggerStep": "/api/3/workflow_steps/c9a16ffa-6ea4-443e-ba39-a919dd48ab49",
@@ -767,13 +781,14 @@
               "description": null,
               "arguments": {
                 "route": "a0f58c80-bf1e-46a9-95b6-7b2357afa821",
-                "title": "Securonix: Get Risk History",
+                "title": "Securonix SNYPR: Get Risk History",
                 "resources": [
                   "alerts"
                 ],
                 "inputVariables": [],
                 "step_variables": {
                   "input": {
+                    "params": [],
                     "records": "{{vars.input.records}}"
                   }
                 },
@@ -811,13 +826,14 @@
           "groups": [],
           "priority": null,
           "uuid": "4d1ccd06-6786-4dd3-b11e-baec9863bef3",
-          "id": 5678,
+          "id": 789,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
           "importedBy": [],
           "recordTags": [
-            "securonix-snypr"
+            "securonix-snypr",
+            "Securonix"
           ]
         },
         {
@@ -833,7 +849,7 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1664877035,
+          "lastModifyDate": 1669281569,
           "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
           "versions": [],
           "triggerStep": "/api/3/workflow_steps/5a157b88-eb85-4b91-82de-8e5860b260f9",
@@ -864,13 +880,14 @@
               "description": null,
               "arguments": {
                 "route": "c82fdb45-6801-4c08-a6d1-d7de9345ea1f",
-                "title": "Securonix: List All Policies",
+                "title": "Securonix SNYPR: List All Policies",
                 "resources": [
                   "alerts"
                 ],
                 "inputVariables": [],
                 "step_variables": {
                   "input": {
+                    "params": [],
                     "records": "{{vars.input.records}}"
                   }
                 },
@@ -908,13 +925,14 @@
           "groups": [],
           "priority": null,
           "uuid": "5da1fa70-a7d7-4394-9d12-11ca615702ef",
-          "id": 5689,
+          "id": 790,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
           "importedBy": [],
           "recordTags": [
-            "securonix-snypr"
+            "securonix-snypr",
+            "Securonix"
           ]
         },
         {
@@ -930,7 +948,7 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1664877035,
+          "lastModifyDate": 1669281606,
           "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
           "versions": [],
           "triggerStep": "/api/3/workflow_steps/8575cc2f-4609-4fcf-92b9-b109a200b597",
@@ -941,13 +959,14 @@
               "description": null,
               "arguments": {
                 "route": "b1252447-3d1b-444f-9e4f-1fe74daf030e",
-                "title": "Securonix: Query Watchlist",
+                "title": "Securonix SNYPR: Query Watchlist",
                 "resources": [
                   "alerts"
                 ],
                 "inputVariables": [],
                 "step_variables": {
                   "input": {
+                    "params": [],
                     "records": "{{vars.input.records}}"
                   }
                 },
@@ -1008,13 +1027,14 @@
           "groups": [],
           "priority": null,
           "uuid": "6747b942-6a96-416e-86fd-81efa4653243",
-          "id": 5684,
+          "id": 791,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
           "importedBy": [],
           "recordTags": [
-            "securonix-snypr"
+            "securonix-snypr",
+            "Securonix"
           ]
         },
         {
@@ -1030,7 +1050,7 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1664877035,
+          "lastModifyDate": 1669282285,
           "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
           "versions": [],
           "triggerStep": "/api/3/workflow_steps/8e763231-846f-49e2-a588-5ae03d82d01c",
@@ -1062,13 +1082,14 @@
               "description": null,
               "arguments": {
                 "route": "293e83e9-97ae-43b9-8e12-8057e331d31c",
-                "title": "Securonix: List Users",
+                "title": "Securonix SNYPR: List Users",
                 "resources": [
                   "alerts"
                 ],
                 "inputVariables": [],
                 "step_variables": {
                   "input": {
+                    "params": [],
                     "records": "{{vars.input.records}}"
                   }
                 },
@@ -1106,29 +1127,30 @@
           "groups": [],
           "priority": null,
           "uuid": "68fa8b43-3c82-4516-a4fe-7767c13cd711",
-          "id": 5683,
+          "id": 792,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
           "importedBy": [],
           "recordTags": [
-            "securonix-snypr"
+            "securonix-snypr",
+            "Securonix"
           ]
         },
         {
           "@type": "Workflow",
           "triggerLimit": null,
-          "name": "Get Default",
+          "name": "Get Workflow Default Assignee",
           "aliasName": null,
           "tag": "#Securonix-SNYPR",
-          "description": "Get default assignee for specified workflow from Securonix SNYPR.",
+          "description": "Retrieves the default assignee details for a specified workflow from Securonix SNYPR based on the workflow name you have specified.",
           "isActive": false,
           "debug": false,
           "singleRecordExecution": false,
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1664877035,
+          "lastModifyDate": 1669281636,
           "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
           "versions": [],
           "triggerStep": "/api/3/workflow_steps/57695a27-3684-473b-a782-76283fe144b3",
@@ -1162,12 +1184,14 @@
               "description": null,
               "arguments": {
                 "route": "4dda06bc-b05d-4bd7-a74f-c5df0e51d58f",
+                "title": "Securonix SNYPR: Get Workflow Default Assignee",
                 "resources": [
                   "alerts"
                 ],
                 "inputVariables": [],
                 "step_variables": {
                   "input": {
+                    "params": [],
                     "records": "{{vars.input.records}}"
                   }
                 },
@@ -1205,13 +1229,14 @@
           "groups": [],
           "priority": null,
           "uuid": "69d71974-e81e-41dc-9323-25628d6dc278",
-          "id": 5675,
+          "id": 793,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
           "importedBy": [],
           "recordTags": [
-            "securonix-snypr"
+            "securonix-snypr",
+            "Securonix"
           ]
         },
         {
@@ -1227,7 +1252,7 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1664877035,
+          "lastModifyDate": 1669271423,
           "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
           "versions": [],
           "triggerStep": "/api/3/workflow_steps/6f60dab5-fb64-4d3e-adc5-543d4edd0fa4",
@@ -1270,13 +1295,14 @@
               "description": null,
               "arguments": {
                 "route": "b67fcd42-02ca-4fe7-b371-da7f0d00c39f",
-                "title": "Securonix-snypr: Create Incident",
+                "title": "Securonix SNYPR: Create Incident",
                 "resources": [
                   "alerts"
                 ],
                 "inputVariables": [],
                 "step_variables": {
                   "input": {
+                    "params": [],
                     "records": "{{vars.input.records}}"
                   }
                 },
@@ -1320,13 +1346,14 @@
           "groups": [],
           "priority": null,
           "uuid": "6f8dc7ff-171c-4958-8ab9-a96257e57891",
-          "id": 5669,
+          "id": 794,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
           "importedBy": [],
           "recordTags": [
-            "securonix-snypr"
+            "securonix-snypr",
+            "Securonix"
           ]
         },
         {
@@ -1342,7 +1369,7 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1664877035,
+          "lastModifyDate": 1669281723,
           "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
           "versions": [],
           "triggerStep": "/api/3/workflow_steps/473946a9-2cc1-4ae0-8c68-440f0f911767",
@@ -1376,13 +1403,14 @@
               "description": null,
               "arguments": {
                 "route": "cb6f428e-a9bf-4c3d-8aee-6df638a428d7",
-                "title": "Securonix: Query Third Party Intelligence",
+                "title": "Securonix SNYPR: Query Third Party Intelligence",
                 "resources": [
                   "alerts"
                 ],
                 "inputVariables": [],
                 "step_variables": {
                   "input": {
+                    "params": [],
                     "records": "{{vars.input.records}}"
                   }
                 },
@@ -1420,13 +1448,14 @@
           "groups": [],
           "priority": null,
           "uuid": "7463a6b5-2fac-4435-ba48-1dddaf6426b0",
-          "id": 5670,
+          "id": 795,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
           "importedBy": [],
           "recordTags": [
-            "securonix-snypr"
+            "securonix-snypr",
+            "Securonix"
           ]
         },
         {
@@ -1435,14 +1464,14 @@
           "name": "Get Top Violators",
           "aliasName": null,
           "tag": "#Securonix-SNYPR",
-          "description": "Retrieves the top violators from Securonix SNYPR based on when the violator was last seen and other input parameters that you have specified.",
+          "description": "Retrieves the top violators from Securonix SNYPR based on when the violator was last seen and \nother input parameters that you have specified.",
           "isActive": false,
           "debug": false,
           "singleRecordExecution": false,
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1664877035,
+          "lastModifyDate": 1669281751,
           "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
           "versions": [],
           "triggerStep": "/api/3/workflow_steps/1b74ebad-b882-460b-b985-2f5b0f9f2d9d",
@@ -1453,13 +1482,14 @@
               "description": null,
               "arguments": {
                 "route": "f9df28b8-8feb-4eed-96b1-47be49626a76",
-                "title": "Securonix: Get Top Violators",
+                "title": "Securonix SNYPR: Get Top Violators",
                 "resources": [
                   "alerts"
                 ],
                 "inputVariables": [],
                 "step_variables": {
                   "input": {
+                    "params": [],
                     "records": "{{vars.input.records}}"
                   }
                 },
@@ -1523,13 +1553,14 @@
           "groups": [],
           "priority": null,
           "uuid": "872d5918-9431-4016-a864-4b5a6ca57bfa",
-          "id": 5671,
+          "id": 796,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
           "importedBy": [],
           "recordTags": [
-            "securonix-snypr"
+            "securonix-snypr",
+            "Securonix"
           ]
         },
         {
@@ -1545,7 +1576,7 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1664877035,
+          "lastModifyDate": 1669281781,
           "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
           "versions": [],
           "triggerStep": "/api/3/workflow_steps/dfdfc699-72f6-43d5-b811-c0d0d9357be8",
@@ -1583,13 +1614,14 @@
               "description": null,
               "arguments": {
                 "route": "b8b178e4-9d9b-4fc3-9279-b1ae74f46957",
-                "title": "Securonix-snypr: List Incident",
+                "title": "Securonix SNYPR: List Incident",
                 "resources": [
                   "alerts"
                 ],
                 "inputVariables": [],
                 "step_variables": {
                   "input": {
+                    "params": [],
                     "records": "{{vars.input.records}}"
                   }
                 },
@@ -1607,7 +1639,7 @@
               },
               "status": null,
               "top": "20",
-              "left": "152",
+              "left": "160",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
               "group": null,
               "uuid": "dfdfc699-72f6-43d5-b811-c0d0d9357be8"
@@ -1627,13 +1659,14 @@
           "groups": [],
           "priority": null,
           "uuid": "8a135be8-27c6-4705-a2b1-261cd920d075",
-          "id": 5686,
+          "id": 797,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
           "importedBy": [],
           "recordTags": [
-            "securonix-snypr"
+            "securonix-snypr",
+            "Securonix"
           ]
         },
         {
@@ -1649,7 +1682,7 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1664877035,
+          "lastModifyDate": 1669281864,
           "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
           "versions": [],
           "triggerStep": "/api/3/workflow_steps/85293bd2-d73e-4666-9cc4-72da40b8199c",
@@ -1660,13 +1693,14 @@
               "description": null,
               "arguments": {
                 "route": "f1dea83e-99c8-4bef-be83-050ebc7b853f",
-                "title": "Securonix: Query Violations",
+                "title": "Securonix SNYPR: Query Violations",
                 "resources": [
                   "alerts"
                 ],
                 "inputVariables": [],
                 "step_variables": {
                   "input": {
+                    "params": [],
                     "records": "{{vars.input.records}}"
                   }
                 },
@@ -1729,13 +1763,14 @@
           "groups": [],
           "priority": null,
           "uuid": "8b1d583e-ea61-4a15-9109-4ee259d3e45b",
-          "id": 5672,
+          "id": 798,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
           "importedBy": [],
           "recordTags": [
-            "securonix-snypr"
+            "securonix-snypr",
+            "Securonix"
           ]
         },
         {
@@ -1751,7 +1786,7 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1664877035,
+          "lastModifyDate": 1669281904,
           "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
           "versions": [],
           "triggerStep": "/api/3/workflow_steps/fa996457-4973-4484-a7f9-934022b457d5",
@@ -1786,13 +1821,14 @@
               "description": null,
               "arguments": {
                 "route": "8823eb51-aef1-4f53-8865-e586e1348443",
-                "title": "Securonix: Get Top Violations",
+                "title": "Securonix SNYPR: Get Top Violations",
                 "resources": [
                   "alerts"
                 ],
                 "inputVariables": [],
                 "step_variables": {
                   "input": {
+                    "params": [],
                     "records": "{{vars.input.records}}"
                   }
                 },
@@ -1830,13 +1866,14 @@
           "groups": [],
           "priority": null,
           "uuid": "8f1dd25c-b395-48e5-8880-fedd9e24c477",
-          "id": 5674,
+          "id": 799,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
           "importedBy": [],
           "recordTags": [
-            "securonix-snypr"
+            "securonix-snypr",
+            "Securonix"
           ]
         },
         {
@@ -1852,7 +1889,7 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1664877035,
+          "lastModifyDate": 1669281932,
           "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
           "versions": [],
           "triggerStep": "/api/3/workflow_steps/66356105-70c4-4977-bb22-f16fbc389f46",
@@ -1863,13 +1900,14 @@
               "description": null,
               "arguments": {
                 "route": "f5d993d3-5fab-4625-bffe-67c9ae6c3fbb",
-                "title": "Securonix: Get Risk Score",
+                "title": "Securonix SNYPR: Get Risk Score",
                 "resources": [
                   "alerts"
                 ],
                 "inputVariables": [],
                 "step_variables": {
                   "input": {
+                    "params": [],
                     "records": "{{vars.input.records}}"
                   }
                 },
@@ -1932,13 +1970,14 @@
           "groups": [],
           "priority": null,
           "uuid": "a4eb2504-24e6-4343-b272-195e45cf38be",
-          "id": 5681,
+          "id": 800,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
           "importedBy": [],
           "recordTags": [
-            "securonix-snypr"
+            "securonix-snypr",
+            "Securonix"
           ]
         },
         {
@@ -1954,7 +1993,7 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1664877035,
+          "lastModifyDate": 1669281968,
           "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
           "versions": [],
           "triggerStep": "/api/3/workflow_steps/fd7dffe3-6341-415a-a2af-0b685ad1499f",
@@ -1989,13 +2028,14 @@
               "description": null,
               "arguments": {
                 "route": "e8893303-4eee-4fbb-bc57-a96665a7726f",
-                "title": "Securonix-snypr: Add Comment",
+                "title": "Securonix SNYPR: Add Comment",
                 "resources": [
                   "alerts"
                 ],
                 "inputVariables": [],
                 "step_variables": {
                   "input": {
+                    "params": [],
                     "records": "{{vars.input.records}}"
                   }
                 },
@@ -2033,13 +2073,14 @@
           "groups": [],
           "priority": null,
           "uuid": "a5c5f705-ecc0-4e0c-bc18-931721ba2f0b",
-          "id": 5673,
+          "id": 801,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
           "importedBy": [],
           "recordTags": [
-            "securonix-snypr"
+            "securonix-snypr",
+            "Securonix"
           ]
         },
         {
@@ -2055,7 +2096,7 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1664877035,
+          "lastModifyDate": 1669282028,
           "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
           "versions": [],
           "triggerStep": "/api/3/workflow_steps/c0dbb94a-3e91-4053-9b3c-00549af23d4a",
@@ -2066,13 +2107,14 @@
               "description": null,
               "arguments": {
                 "route": "009a431e-c8de-4230-bea8-dc11819d1ce0",
-                "title": "Securonix: List All Resource Groups",
+                "title": "Securonix SNYPR: List All Resource Groups",
                 "resources": [
                   "alerts"
                 ],
                 "inputVariables": [],
                 "step_variables": {
                   "input": {
+                    "params": [],
                     "records": "{{vars.input.records}}"
                   }
                 },
@@ -2130,13 +2172,14 @@
           "groups": [],
           "priority": null,
           "uuid": "aa14809f-03fe-4012-8387-b62c70813486",
-          "id": 5679,
+          "id": 802,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
           "importedBy": [],
           "recordTags": [
-            "securonix-snypr"
+            "securonix-snypr",
+            "Securonix"
           ]
         },
         {
@@ -2152,7 +2195,7 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1664877035,
+          "lastModifyDate": 1669280616,
           "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
           "versions": [],
           "triggerStep": "/api/3/workflow_steps/c35bd125-4a53-4772-ade2-b301cf4b249b",
@@ -2183,13 +2226,14 @@
               "description": null,
               "arguments": {
                 "route": "5fab912a-c559-4153-a219-a288fae18226",
-                "title": "Securonix: List All Peer Groups",
+                "title": "Securonix SNYPR: List All Peer Groups",
                 "resources": [
                   "alerts"
                 ],
                 "inputVariables": [],
                 "step_variables": {
                   "input": {
+                    "params": [],
                     "records": "{{vars.input.records}}"
                   }
                 },
@@ -2227,13 +2271,14 @@
           "groups": [],
           "priority": null,
           "uuid": "b5597930-2f1d-4516-a1ff-36b7286e2db5",
-          "id": 5665,
+          "id": 803,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
           "importedBy": [],
           "recordTags": [
-            "securonix-snypr"
+            "securonix-snypr",
+            "Securonix"
           ]
         },
         {
@@ -2249,7 +2294,7 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1664877035,
+          "lastModifyDate": 1669282061,
           "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
           "versions": [],
           "triggerStep": "/api/3/workflow_steps/4c1ac9e9-95af-46f6-bf28-d820a92be302",
@@ -2260,13 +2305,14 @@
               "description": null,
               "arguments": {
                 "route": "3e90563d-5e23-4a90-8f44-8ae524646b67",
-                "title": "Securonix-snypr: Get Incident Details",
+                "title": "Securonix SNYPR: Get Incident Details",
                 "resources": [
                   "alerts"
                 ],
                 "inputVariables": [],
                 "step_variables": {
                   "input": {
+                    "params": [],
                     "records": "{{vars.input.records}}"
                   }
                 },
@@ -2327,13 +2373,14 @@
           "groups": [],
           "priority": null,
           "uuid": "b5a62b16-d432-4eb8-ab4d-081bee846ad4",
-          "id": 5688,
+          "id": 804,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
           "importedBy": [],
           "recordTags": [
-            "securonix-snypr"
+            "securonix-snypr",
+            "Securonix"
           ]
         },
         {
@@ -2349,7 +2396,7 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1664877035,
+          "lastModifyDate": 1669282121,
           "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
           "versions": [],
           "triggerStep": "/api/3/workflow_steps/e078ae75-bb8b-4c10-b28d-5f9c21203d9c",
@@ -2383,13 +2430,14 @@
               "description": null,
               "arguments": {
                 "route": "85549e42-4ff1-4c76-8802-2e106a443b53",
-                "title": "Securonix-snypr: Get Incident Workflow",
+                "title": "Securonix SNYPR: Get Incident Workflow",
                 "resources": [
                   "alerts"
                 ],
                 "inputVariables": [],
                 "step_variables": {
                   "input": {
+                    "params": [],
                     "records": "{{vars.input.records}}"
                   }
                 },
@@ -2406,8 +2454,8 @@
                 "singleRecordExecution": false
               },
               "status": null,
-              "top": "26",
-              "left": "272",
+              "top": "20",
+              "left": "280",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
               "group": null,
               "uuid": "e078ae75-bb8b-4c10-b28d-5f9c21203d9c"
@@ -2427,13 +2475,14 @@
           "groups": [],
           "priority": null,
           "uuid": "b9d09ce3-14ed-4ede-8085-8ebdb60db4b8",
-          "id": 5677,
+          "id": 805,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
           "importedBy": [],
           "recordTags": [
-            "securonix-snypr"
+            "securonix-snypr",
+            "Securonix"
           ]
         },
         {
@@ -2449,7 +2498,7 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1664877035,
+          "lastModifyDate": 1669282154,
           "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
           "versions": [],
           "triggerStep": "/api/3/workflow_steps/b140d175-7110-4705-8be6-7d157cc83e2e",
@@ -2484,13 +2533,14 @@
               "description": null,
               "arguments": {
                 "route": "fc9535c5-bac7-4836-ba9d-216e8a2d359d",
-                "title": "Securonix-snypr: Check Task on Incident",
+                "title": "Securonix SNYPR: Check Task on Incident",
                 "resources": [
                   "alerts"
                 ],
                 "inputVariables": [],
                 "step_variables": {
                   "input": {
+                    "params": [],
                     "records": "{{vars.input.records}}"
                   }
                 },
@@ -2528,13 +2578,14 @@
           "groups": [],
           "priority": null,
           "uuid": "c1261d59-a76f-494e-a698-cf64c52c3348",
-          "id": 5664,
+          "id": 806,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
           "importedBy": [],
           "recordTags": [
-            "securonix-snypr"
+            "securonix-snypr",
+            "Securonix"
           ]
         },
         {
@@ -2550,7 +2601,7 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1664877035,
+          "lastModifyDate": 1669282226,
           "collection": "/api/3/workflow_collections/e201c879-bd9b-4a41-87bf-93fcf1a490c4",
           "versions": [],
           "triggerStep": "/api/3/workflow_steps/bfc5d35e-6cf3-40c4-954b-0e50edc639e3",
@@ -2582,13 +2633,14 @@
               "description": null,
               "arguments": {
                 "route": "5cde699d-904d-41b6-bbde-a036ee03ef77",
-                "title": "Securonix-snypr: Get Available Threat Action",
+                "title": "Securonix SNYPR: Get Available Threat Action",
                 "resources": [
                   "alerts"
                 ],
                 "inputVariables": [],
                 "step_variables": {
                   "input": {
+                    "params": [],
                     "records": "{{vars.input.records}}"
                   }
                 },
@@ -2606,7 +2658,7 @@
               },
               "status": null,
               "top": "20",
-              "left": "249",
+              "left": "240",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
               "group": null,
               "uuid": "bfc5d35e-6cf3-40c4-954b-0e50edc639e3"
@@ -2626,19 +2678,21 @@
           "groups": [],
           "priority": null,
           "uuid": "fb17c62c-507e-4ee4-b095-6e302185ac45",
-          "id": 5666,
+          "id": 807,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
           "importedBy": [],
           "recordTags": [
-            "securonix-snypr"
+            "securonix-snypr",
+            "Securonix"
           ]
         }
       ]
     }
   ],
   "exported_tags": [
-    "securonix-snypr"
+    "securonix-snypr",
+    "Securonix"
   ]
 }
