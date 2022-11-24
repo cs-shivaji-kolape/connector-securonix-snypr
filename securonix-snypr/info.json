@@ -5,11 +5,11 @@
   "label": "Securonix SNYPR",
   "version": "2.1.0",
   "publisher": "Fortinet",
-  "cs_approved": false,
+  "cs_approved": true,
   "cs_compatible": true,
   "icon_small_name": "small.png",
   "icon_large_name": "large.png",
-  "help_online": "",
+  "help_online": "https://docs.fortinet.com/document/fortisoar/2.1.0/securonix-snypr/447/securonix-snypr-v2-1-0",
   "configuration": {
     "fields": [
       {
@@ -937,7 +937,7 @@
     {
       "operation": "list_incidents",
       "title": "List Incidents",
-      "description": " Retrieves a list of incidents from the Securonix SNYPR platform based on the range type, date range, and other filter parameters that you have specified.",
+      "description": "Retrieves a list of incidents from the Securonix SNYPR platform based on the range type, date range, and other filter parameters that you have specified.",
       "category": "investigation",
       "annotation": "get_incident_details",
       "output_schema": {
@@ -1411,7 +1411,7 @@
     },
     {
       "operation": "take_action_on_incident",
-      "title": "Task action on incident",
+      "title": "Task Action on Incident",
       "description": "Takes a specified action on a Securonix SNYPR incident based on the incident ID, action, and other input parameters you have specified.",
       "category": "investigation",
       "annotation": "take_action_on_incident",
