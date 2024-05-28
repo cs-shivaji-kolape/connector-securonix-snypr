@@ -1,5 +1,5 @@
 """ Copyright start
-  Copyright (C) 2008 - 2022 Fortinet Inc.
+  Copyright (C) 2008 - 2024 Fortinet Inc.
   All rights reserved.
   FORTINET CONFIDENTIAL & FORTINET PROPRIETARY SOURCE CODE
   Copyright end """
@@ -15,13 +15,17 @@ class SecuronixConnector(Connector):
     def execute(self, config, operation, params, **kwargs):
         logger.info('In execute() Operation: {}'.format(operation))
         try:
+            connector_info = {"connector_name": self._info_json.get('name'),
+                              "connector_version": self._info_json.get('version')}
             operation = operations.get(operation)
-            return operation(config, params)
+            return operation(config, params, connector_info)
         except Exception as err:
             logger.error('{}'.format(err))
             raise ConnectorError('{}'.format(err))
 
     def check_health(self, config):
-        return _check_health(config)
+        connector_info = {"connector_name": self._info_json.get('name'),
+                          "connector_version": self._info_json.get('version')}
+        return _check_health(config, connector_info)
 
 

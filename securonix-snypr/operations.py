@@ -7,7 +7,7 @@
 
 import datetime, json, requests, time, xmltodict
 from urllib.parse import parse_qs
-
+from connectors.core.utils import update_connnector_config
 from connectors.core.connector import get_logger, ConnectorError
 
 from .const import *
@@ -25,7 +25,7 @@ TOKEN_VALIDITY = 365
 
 
 class Securonix(object):
-    def __init__(self, config):
+    def __init__(self, config, connector_info):
         self.server_url = config.get('server_url')
         if not self.server_url.startswith('https://'):
             self.server_url = 'https://' + self.server_url
@@ -34,7 +34,11 @@ class Securonix(object):
         self.password = config.get('password')
         self.tenant = config.get('tenant')
         self.verify_ssl = config.get('verify_ssl')
-        self.token = None
+        self.token = config.get('api_token')
+        self.config = config
+        self.connect_name = connector_info.get('connector_name')
+        self.connector_version = connector_info.get('connector_version')
+
 
     def make_rest_call(self, endpoint, params=None, updated_headers=None, payload=None, method='GET'):
         headers = updated_headers if updated_headers else self.generate_headers()
@@ -91,18 +95,26 @@ class Securonix(object):
             return True
 
     def generate_headers(self):
-        headers = {
-            'username': self.username,
-            'password': str(self.password),
-            'tenant': self.tenant,
-            'validity': str(TOKEN_VALIDITY)
-        }
         if not self.token:
+            headers = {
+                'username': self.username,
+                'password': str(self.password),
+                'tenant': self.tenant,
+                'validity': str(TOKEN_VALIDITY)
+            }
             self.token = self.make_rest_call('/Snypr/ws/token/generate', updated_headers=headers)
-        valid = self.validate_token(self.token)
-        if valid:
-            headers = {'token': self.token}
-            return headers
+            self.config['api_token'] = self.token
+            update_connnector_config(self.connect_name, self.connector_version, self.config,
+                                     self.config.get('config_id'))
+        try:
+            valid = self.validate_token(self.token)
+            if valid:
+                return {'token': self.token}
+        except Exception as err:
+            self.config['api_token'] = None
+            update_connnector_config(self.connect_name, self.connector_version, self.config,
+                                     self.config.get('config_id'))
+            raise ConnectorError(err)
 
 
 def build_query_string(params):
@@ -115,45 +127,45 @@ def build_query_string(params):
     return query_string
 
 
-def list_users(config, params):
-    sec = Securonix(config)
+def list_users(config, params, connector_info):
+    sec = Securonix(config, connector_info)
     return sec.make_rest_call('/Snypr/ws/list/allUsers')
 
 
-def list_peer_groups(config, params):
-    sec = Securonix(config)
+def list_peer_groups(config, params, connector_info):
+    sec = Securonix(config, connector_info)
     return sec.make_rest_call('/Snypr/ws/list/peerGroups')
 
 
-def list_resource_groups(config, params):
-    sec = Securonix(config)
+def list_resource_groups(config, params, connector_info):
+    sec = Securonix(config, connector_info)
     return sec.make_rest_call('/Snypr/ws/list/resourceGroups')
 
 
-def list_policies(config, params):
-    sec = Securonix(config)
+def list_policies(config, params, connector_info):
+    sec = Securonix(config, connector_info)
     return sec.make_rest_call('/Snypr/ws/policy/getAllPolicies')
 
 
-def get_top_threats(config, params):
-    sec = Securonix(config)
+def get_top_threats(config, params, connector_info):
+    sec = Securonix(config, connector_info)
     query_string = build_query_string(params)
     query_string.update({'offset': 0, 'max': 1000})
     return sec.make_rest_call('/Snypr/ws/sccWidget/getTopThreats', params=query_string)
 
 
-def get_top_violations(config, params):
-    sec = Securonix(config)
+def get_top_violations(config, params,connector_info):
+    sec = Securonix(config, connector_info)
     query_string = build_query_string(params)
     query_string.update({'offset': 0, 'max': 1000})
     return sec.make_rest_call('/Snypr/ws/sccWidget/getTopViolations', params=query_string)
 
 
-def get_top_violators(config, params):
+def get_top_violators(config, params, connector_info):
     offset = params.get('offset')
     if not offset:
         params.update({'offset': 0})
-    sec = Securonix(config)
+    sec = Securonix(config, connector_info)
     query_string = build_query_string(params)
     return sec.make_rest_call('/Snypr/ws/sccWidget/getTopViolators', params=query_string)
 
@@ -169,8 +181,8 @@ def convert_xmlto_json(events):
         return []
 
 
-def get_risk_score(config, params):
-    sec = Securonix(config)
+def get_risk_score(config, params, connector_info):
+    sec = Securonix(config, connector_info)
     query = params.get('query')
     query_string = 'index=riskscore'
     if query:
@@ -188,8 +200,8 @@ def get_risk_score(config, params):
     return resp
 
 
-def get_risk_history(config, params):
-    sec = Securonix(config)
+def get_risk_history(config, params, connector_info):
+    sec = Securonix(config, connector_info)
     query = params.get('query')
     query_string = 'index=riskscorehistory'
     if query:
@@ -207,8 +219,8 @@ def get_risk_history(config, params):
     return resp
 
 
-def query_users(config, params):
-    sec = Securonix(config)
+def query_users(config, params, connector_info):
+    sec = Securonix(config, connector_info)
     query = params.get('query')
     query_string = "index=users"
     if query:
@@ -217,8 +229,8 @@ def query_users(config, params):
     return sec.make_rest_call('/Snypr/ws/spotter/index/search', params=params)
 
 
-def query_violations(config, params):
-    sec = Securonix(config)
+def query_violations(config, params, connector_info):
+    sec = Securonix(config, connector_info)
     query = params.get('query')
     query_string = "index=violation"
     if query:
@@ -244,8 +256,8 @@ def query_violations(config, params):
         return json_data
 
 
-def query_watchlist(config, params):
-    sec = Securonix(config)
+def query_watchlist(config, params, connector_info):
+    sec = Securonix(config, connector_info)
     query = params.get('query')
     query_string = "index=watchlist"
     if query:
@@ -254,8 +266,8 @@ def query_watchlist(config, params):
     return sec.make_rest_call('/Snypr/ws/spotter/index/search', params=params)
 
 
-def query_tpi(config, params):
-    sec = Securonix(config)
+def query_tpi(config, params, connector_info):
+    sec = Securonix(config, connector_info)
     query = params.get('query')
     query_string = "index=tpi"
     if query:
@@ -285,8 +297,8 @@ def generate_query_string(params):
     return query
 
 
-def custom_query(config, params):
-    sec = Securonix(config)
+def custom_query(config, params, connector_info):
+    sec = Securonix(config, connector_info)
     params = {k: v for k, v in params.items() if v is not None and v != ''}
     query = generate_query_string(params)
     logger.info("query: {}".format(query))
@@ -300,65 +312,65 @@ def custom_query(config, params):
         return resp
 
 
-def create_incident(config, params):
-    sec = Securonix(config)
+def create_incident(config, params, connector_info):
+    sec = Securonix(config, connector_info)
     params.update({"tenantName": sec.tenant})
     params = {k: v for k, v in params.items() if v is not None and v != ''}
     return sec.make_rest_call('/Snypr/ws/incident/actions', params=params, method='POST')
 
 
-def get_incident_details(config, params):
-    sec = Securonix(config)
+def get_incident_details(config, params, connector_info):
+    sec = Securonix(config, connector_info)
     params.update({'type': 'metaInfo'})
     return sec.make_rest_call('/Snypr/ws/incident/get', params=params)
 
 
-def get_incident_status(config, params):
-    sec = Securonix(config)
+def get_incident_status(config, params, connector_info):
+    sec = Securonix(config, connector_info)
     params.update({'type': 'status'})
     return sec.make_rest_call('/Snypr/ws/incident/get', params=params)
 
 
-def get_incident_workflow(config, params):
-    sec = Securonix(config)
+def get_incident_workflow(config, params, connector_info):
+    sec = Securonix(config, connector_info)
     params.update({'type': 'workflow'})
     return sec.make_rest_call('/Snypr/ws/incident/get', params=params)
 
 
-def get_possible_action_for_incident(config, params):
-    sec = Securonix(config)
+def get_possible_action_for_incident(config, params, connector_info):
+    sec = Securonix(config, connector_info)
     params.update({'type': 'actions'})
     return sec.make_rest_call('/Snypr/ws/incident/get', params=params)
 
 
-def get_workflows(config, params):
-    sec = Securonix(config)
+def get_workflows(config, params, connector_info):
+    sec = Securonix(config, connector_info)
     params.update({'type': 'workflows'})
     return sec.make_rest_call('/Snypr/ws/incident/get', params=params)
 
 
-def check_task_on_incident(config, params):
-    sec = Securonix(config)
+def check_task_on_incident(config, params, connector_info):
+    sec = Securonix(config, connector_info)
     params.update({'type': 'actionInfo'})
     return sec.make_rest_call('/Snypr/ws/incident/get', params=params)
 
 
-def get_workflow_default_assignee(config, params):
-    sec = Securonix(config)
+def get_workflow_default_assignee(config, params, connector_info):
+    sec = Securonix(config, connector_info)
     params.update({'type': 'defaultAssignee'})
     return sec.make_rest_call('/Snypr/ws/incident/get', params=params)
 
 
-def take_action_on_incident(config, params):
-    sec = Securonix(config)
+def take_action_on_incident(config, params, connector_info):
+    sec = Securonix(config, connector_info)
     other_fields = params.pop('other_fields', {})
     if other_fields:
         params.update(other_fields)
     return sec.make_rest_call('/Snypr/ws/incident/actions', params=params, method='POST')
 
 
-def add_comment(config, params):
-    sec = Securonix(config)
+def add_comment(config, params, connector_info):
+    sec = Securonix(config, connector_info)
     params.update({'actionName': 'comment'})
     return sec.make_rest_call('/Snypr/ws/incident/actions', params=params, method='POST')
 
@@ -381,8 +393,8 @@ def get_millisecond_epoch_time(_date):
         raise ConnectorError('get_epoch: Exception occurred [{0}]'.format(str(Err)))
 
 
-def list_incidents(config, params):
-    sec = Securonix(config)
+def list_incidents(config, params, connector_info):
+    sec = Securonix(config, connector_info)
     params['type'] = 'list'
     params['from'] = get_millisecond_epoch_time(params.get('from'))
     params['to'] = get_millisecond_epoch_time(params.get('to'))
@@ -391,14 +403,14 @@ def list_incidents(config, params):
     return sec.make_rest_call('/Snypr/ws/incident/get', params=params)
 
 
-def get_available_threat_action(config, params):
-    sec = Securonix(config)
+def get_available_threat_action(config, params, connector_info):
+    sec = Securonix(config, connector_info)
     params.update({'type': 'threatActions'})
     return sec.make_rest_call('/Snypr/ws/incident/get', params=params)
 
 
-def _check_health(config):
-    sec = Securonix(config)
+def _check_health(config, connector_info):
+    sec = Securonix(config, connector_info)
     headers = sec.generate_headers()
     if headers:
         logger.info('connector available')
