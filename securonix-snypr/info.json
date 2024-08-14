@@ -1029,6 +1029,17 @@
           "editable": true,
           "visible": true,
           "value": ""
+        },
+        {
+          "title": "Max Limit",
+          "name": "max",
+          "type": "integer",
+          "description": "(Optional) Specify the maximum number of results or records to include in the action response",
+          "tooltip": "Specify the maximum number of results or records to include in the action response",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "value": 1000
         }
       ]
     },
