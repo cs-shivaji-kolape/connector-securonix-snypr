@@ -659,9 +659,9 @@
                 ],
                 "value": "Last Year"
               }
-            ],
-            "value": "Days"
-          }
+            ]
+          },
+          "value": "Days"
         }
       ]
     },
@@ -759,9 +759,9 @@
                 ],
                 "value": "Last Year"
               }
-            ],
-            "value": "Days"
-          }
+            ]
+          },
+          "value": "Days"
         }
       ]
     },
@@ -855,9 +855,9 @@
                 ],
                 "value": "Last Year"
               }
-            ],
-            "value": "Days"
-          }
+            ]
+          },
+           "value": "Days"
         },
         {
           "title": "Offset",
