@@ -9,7 +9,7 @@
   "cs_compatible": true,
   "icon_small_name": "small.png",
   "icon_large_name": "large.png",
-  "help_online": "https://docs.fortinet.com/document/fortisoar/2.1.0/securonix-snypr/447/securonix-snypr-v2-1-0",
+  "help_online": "https://docs.fortinet.com/document/fortisoar/2.1.1/securonix-snypr/927/securonix-snypr-v2-1-1",
   "configuration": {
     "fields": [
       {
