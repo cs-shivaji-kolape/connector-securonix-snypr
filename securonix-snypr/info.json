@@ -3,13 +3,17 @@
   "category": "Analytics and SIEM",
   "name": "securonix-snypr",
   "label": "Securonix SNYPR",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "publisher": "Fortinet",
   "cs_approved": false,
   "cs_compatible": true,
   "icon_small_name": "small.png",
   "icon_large_name": "large.png",
-  "help_online": "https://docs.fortinet.com/document/fortisoar/2.1.1/securonix-snypr/927/securonix-snypr-v2-1-1",
+  "ingestion_supported": true,
+  "ingestion_modes": [
+    "scheduled"
+  ],
+  "help_online": "",
   "configuration": {
     "fields": [
       {
@@ -332,7 +336,7 @@
       "annotation": "get_incident_details",
       "output_schema": {
         "status": "",
-        "messages": [],
+        "messages": "",
         "result": {
           "data": {
             "totalIncidents": "",
